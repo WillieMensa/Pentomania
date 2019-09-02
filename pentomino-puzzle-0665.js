@@ -2020,20 +2020,20 @@ function activePolygon()
 
 		// add cursor style
 		poly.on('pointerover', function() {
-			writeMessage( "*** pointerover ***" );
+			//	writeMessage( "*** pointerover ***" );
 			document.body.style.cursor = 'move';
 		});
 
 		poly.on('pointerout', function() {
 			document.body.style.cursor = 'default';
 			//	console.log( "inicio Dragstart ----------------------------" );
-			writeMessage( "*** pointerout ***" );
+			//	writeMessage( "*** pointerout ***" );
 		});
 
 		//	dragging, desplazamiento
 		//	poly.on('touchmove', function() {
 		poly.on('pointermove', function() {
-			writeMessage( "*** pointermove ***" );
+			//	writeMessage( "*** pointermove ***" );
 			removeFromBoard(this);
 			clearFocusPoly(getLastFocusPoly());
 			setFocusPoly(this);
@@ -2054,7 +2054,7 @@ function activePolygon()
 
 		poly.on('dragstart', function() {
 
-			writeMessage( "*** dragstart ***" );
+			//	writeMessage( "*** dragstart ***" );
 			removeFromBoard(this);
 			clearFocusPoly(getLastFocusPoly());
 			//	hideOperatorObject(); //disable operator before drag
@@ -2068,8 +2068,7 @@ function activePolygon()
 		});
 
 		poly.on('dragend', function() {
-			//	console.log( "inicio Dragend ----------------------------" );
-			writeMessage( "*** dragend ***" );
+			//	writeMessage( "*** dragend ***" );
 			if(tryInsert2Board(this)) {
 				//insert success
 

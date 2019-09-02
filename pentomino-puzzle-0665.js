@@ -327,7 +327,8 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	playBtn.addEventListener ("click", function() {	playPuzzle(1); });
 	playBtn.style.position	= "absolute";     
 	playBtn.style.left		=	STAGE_OFFSET_X + 1.0 * BLOCK_CELL_SIZE;
-	playBtn.style.top			= STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE;	//	0.9 * STAGE_Y;	//	(STAGE_Y - BLOCK_CELL_SIZE);	//	+"px";
+	//	playBtn.style.top			= STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE;	//	0.9 * STAGE_Y;	//	(STAGE_Y - BLOCK_CELL_SIZE);	//	+"px";
+	playBtn.style.top			= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 	//	playBtn.style.height	= btnHeight;			//	0.6 * BLOCK_CELL_SIZE;
 
 
@@ -338,8 +339,8 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	helpBtn.addEventListener ("click", function() {  alert("pico en helpBtn") } );// 3. Add event handler
 	helpBtn.style.left			=	"050px";
 	helpBtn.style.position	= "absolute";     
-	helpBtn.style.left			=	STAGE_OFFSET_X + 4.5 * BLOCK_CELL_SIZE;
-	helpBtn.style.top				= STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE;
+	helpBtn.style.left			=	STAGE_OFFSET_X + 4.0 * BLOCK_CELL_SIZE;
+	helpBtn.style.top				= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 	//aboutBtn	// About button in javascript code
 	aboutBtn = document.createElement("button");
@@ -348,8 +349,8 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	aboutBtn.addEventListener ("click", function() {  alert("picoen About button") } );// 3. Add event handler
 	//	aboutBtn.style.cssText = "top:" + (250) + "px; left:" + (50) + "px; position: absolute;";// 4. Position in screen
 	aboutBtn.style.position	= "absolute";     
-	aboutBtn.style.left			=	STAGE_OFFSET_X + 8.0 * BLOCK_CELL_SIZE;
-	aboutBtn.style.top			= STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE;
+	aboutBtn.style.left			=	STAGE_OFFSET_X + 7.0 * BLOCK_CELL_SIZE;
+	aboutBtn.style.top			= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
 	//statusBtn,	// Status button in javascript code
@@ -358,8 +359,8 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	document.body.appendChild(statusBtn);
 	statusBtn.addEventListener ("click", function() {  pantallaStatus() } );// 3. Add event handler
 	statusBtn.style.position	= "absolute";     
-	statusBtn.style.left			=	STAGE_OFFSET_X + 11.5 * BLOCK_CELL_SIZE;
-	statusBtn.style.top				= STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE;
+	statusBtn.style.left			=	STAGE_OFFSET_X + 10.0 * BLOCK_CELL_SIZE;
+	statusBtn.style.top				= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
 	//configBtn	// Status button in javascript code
@@ -370,8 +371,8 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	//	configBtn.style.cssText = "top:" + (450) + "px; left:" + (050) + "px; position: absolute;";// 4. Position in screen
 	configBtn.style.left = "50px";	
 	configBtn.style.position = "absolute";
-	configBtn.style.left		=	STAGE_OFFSET_X + 15.0 * BLOCK_CELL_SIZE;
-	configBtn.style.top 		= STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE;
+	configBtn.style.left		=	STAGE_OFFSET_X + 13.0 * BLOCK_CELL_SIZE;
+	configBtn.style.top 		= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
 	
@@ -384,8 +385,8 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	document.body.appendChild(menuBtn);
 	menuBtn.addEventListener ("click", function() {  MenuInicial() } );// 3. Add event handler
 	menuBtn.style.position = "absolute";
-	menuBtn.style.left	=	STAGE_OFFSET_X + 16 * BLOCK_CELL_SIZE;
-	menuBtn.style.top		= STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE;
+	menuBtn.style.left	=	STAGE_OFFSET_X + 14 * BLOCK_CELL_SIZE;
+	menuBtn.style.top		= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
 	//	giraPieza: boton para rotar piezzas
@@ -396,7 +397,7 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	giraPieza.addEventListener ("click", function() { girarPieza() } );// 3. Add event handler
 	giraPieza.style.position = "absolute";
 	giraPieza.style.left	=	STAGE_OFFSET_X + 1.0 * BLOCK_CELL_SIZE;
-	giraPieza.style.top		= STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE;
+	giraPieza.style.top		= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
 	//	volteaPieza: boton para rotar piezzas
@@ -408,7 +409,7 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	//	volteaPieza.style.cssText = "top:" + (SCREEN_Y-080) + "px; left:" + (350) + "px; position: absolute; font:" + (28) + "px sriracharegular bold";
 	volteaPieza.style.position = "absolute";
 	volteaPieza.style.left	=	STAGE_OFFSET_X + 4.0 * BLOCK_CELL_SIZE;
-	volteaPieza.style.top		= STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE;
+	volteaPieza.style.top		= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 	//	volteaPieza.style.font = "40px Arial Black";
 	//	volteaPieza.style.line-height= "6px";
 
@@ -422,22 +423,22 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	//	hintBtn.style.cssText = "top:" + (SCREEN_Y-80) + "px; left:" + (500) + "px; position: absolute;";
 	hintBtn.style.position = "absolute";
 	hintBtn.style.left			=	STAGE_OFFSET_X + 7.0 * BLOCK_CELL_SIZE;
-	hintBtn.style.top				= STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE;
+	hintBtn.style.top				= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
 	checkBtn = document.createElement("INPUT");
   checkBtn.setAttribute("type", "checkbox");
 	document.body.appendChild(checkBtn);
 	checkBtn.addEventListener ("click", function() {  checkButton(this.checked) } );// 3. Add event handler
-	checkBtn.style.left = STAGE_OFFSET_X + 11 * BLOCK_CELL_SIZE;
-	checkBtn.style.top	= (STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE) +"px";
+	checkBtn.style.left = STAGE_OFFSET_X + 10 * BLOCK_CELL_SIZE;
+	checkBtn.style.top	= (STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE) +"px";
 	checkBtn.style.position = "absolute";
-	checkBtn.style.font = "20px";
+	checkBtn.style.font = "16px";
 	checkBtn.style.width = BLOCK_CELL_SIZE;
 
 
 	//	document.getElementById('check').style.cssText = 
-	//		"top:" + (STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE)+"px; left:" + (12.0 * BLOCK_CELL_SIZE) + 
+	//		"top:" + (STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE)+"px; left:" + (12.0 * BLOCK_CELL_SIZE) + 
 	//		"px; position: absolute; font:" + (20) + "px";	//	 roboto white";
 
 	//	var x = document.getElementById("mySelect").selectedIndex;
@@ -460,8 +461,8 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	nroProbBtn.innerHTML = "Aceptar";
 	document.body.appendChild(nroProbBtn);
 	nroProbBtn.addEventListener ("click", function() {  setNroProbl() } );// 3. Add event handler
-	nroProbBtn.style.left = STAGE_OFFSET_X + 10 * BLOCK_CELL_SIZE;
-	nroProbBtn.style.top	= STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE; 
+	nroProbBtn.style.left = STAGE_OFFSET_X + 9 * BLOCK_CELL_SIZE;
+	nroProbBtn.style.top	= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 	nroProbBtn.style.position = "absolute";
 
 
@@ -517,7 +518,7 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	//	hintBtn.style.cssText = "top:" + (SCREEN_Y-80) + "px; left:" + (500) + "px; position: absolute;";
 	hintBtn.style.position = "absolute";
 	hintBtn.style.left			=	STAGE_OFFSET_X + 7.0 * BLOCK_CELL_SIZE;
-	hintBtn.style.top				= STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE;
+	hintBtn.style.top				= STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE;
 
 
 
@@ -714,20 +715,20 @@ function initScreenVariable()
 */
 
 	var maxStageX = 1080;
-	var maxStageY = 660;
-	var maxCellSize = 60;
+	var maxStageY = 720;
+	var maxCellSize = 54;
 
 	var midStageX = 810;
-	var midStageY = 450;
-	var midCellSize = 45;		//	var midCellSize = 32;
+	var midStageY = 540;
+	var midCellSize = 40;		//	var midCellSize = 32;
 
 	var miniStageX = 612;
-	var miniStageY = 340;
-	var miniCellSize = 34;	// 24;
+	var miniStageY = 408;
+	var miniCellSize = 30;	// 24;
 
 	var microStageX = 450;
-	var microStageY = 250;
-	var microCellSize = 25;	// 20;
+	var microStageY = 300;
+	var microCellSize = 22;	// 20;
 
 	//----------------------------------------------------------------------
 	// Window size and scrolling:
@@ -1047,7 +1048,7 @@ function randomPolyInitPos(availablePoly)
 
 	//	distance: distancia horizontal entre las piezas
 	if (DEBUG) {	console.log( 'BLOCK_CELL_SIZE, (ppl + 1): ' + BLOCK_CELL_SIZE  + ', ' + (ppl + 1) +
-					'\n10 * BLOCK_CELL_SIZE / (ppl + 1): ' + 10 * BLOCK_CELL_SIZE / (ppl + 1) )}
+					'\n9 * BLOCK_CELL_SIZE / (ppl + 1): ' + 9 * BLOCK_CELL_SIZE / (ppl + 1) )}
 
 	var distance_X =  10 * BLOCK_CELL_SIZE / (ppl + 1);
 	var distance_Y =  Math.floor(0.7 * (STAGE_Y - BLOCK_CELL_SIZE) / ((availablePoly/ppl) + 1));
@@ -1207,7 +1208,7 @@ function addBackgroundLayer()
 {
 	var borderWidth = Math.round(BLOCK_CELL_SIZE/4);
 	var textOffset = Math.round(BLOCK_CELL_SIZE/8);
-	var titleFontSize = Math.round(BLOCK_CELL_SIZE*0.5);
+	var titleFontSize = Math.round(BLOCK_CELL_SIZE*0.4);
 
 	var titleText1 = new Kinetic.Text({
 		x: BLOCK_CELL_SIZE,			//textOffset,
@@ -1225,12 +1226,12 @@ function addBackgroundLayer()
 
 
 	var verifRect = new Kinetic.Rect({
-		x: 11 * BLOCK_CELL_SIZE,	//				11 * BLOCK_CELL_SIZE,
+		x: 10 * BLOCK_CELL_SIZE,	//				11 * BLOCK_CELL_SIZE,
 		//	y: (STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE),
-		y: ( 10.1 * BLOCK_CELL_SIZE),
+		y: ( STAGE_Y - BLOCK_CELL_SIZE),
 		width:  3 * BLOCK_CELL_SIZE,
-		height: 0.9 * BLOCK_CELL_SIZE,
-		cornerRadius: 12,
+		height: 1.0 * BLOCK_CELL_SIZE,
+		cornerRadius: 10,
 		fill: '#669900'
 
 	});
@@ -1238,16 +1239,15 @@ function addBackgroundLayer()
 
 	var txtVerifica = new Kinetic.Text({
 		//	x: STAGE_OFFSET_X + 11 * BLOCK_CELL_SIZE,	//				11 * BLOCK_CELL_SIZE,
-		x: 12 * BLOCK_CELL_SIZE,	//				11 * BLOCK_CELL_SIZE,
-		//	y: textOffset,		//	(STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE),
-		y: (10.2 * BLOCK_CELL_SIZE),
+		x: 11 * BLOCK_CELL_SIZE,	//				11 * BLOCK_CELL_SIZE,
+		//	y: textOffset,		//	(STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE),
+		y: STAGE_Y - BLOCK_CELL_SIZE,
 		id: 'verifica',
 		text: 'Verifica',
 		fontSize: titleFontSize,
 		fontFamily: 'sriracharegular',
 		fontStyle:"bold",
 		padding: 6,
-
 		fill: 'black'
 	});
 

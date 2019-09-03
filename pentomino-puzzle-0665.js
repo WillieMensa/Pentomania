@@ -218,7 +218,7 @@ var
 	playBtn,			//	jugar
 	statusBtn,		//	status button
 	nroProblema,	//	el input
-	labelBtn,			//	para hacer fondo del input
+	//	labelBtn,			//	para hacer fondo del input
 	giraPieza,		//	rotate button
 	volteaPieza,
 	txtVerifica,	//	texto indicar verificacion
@@ -316,6 +316,8 @@ function init()
 function HaceBotones() {		//	Preparar los botones
 
 const btnHeight = 0.5 * BLOCK_CELL_SIZE;
+var dist_X = Math.floor(STAGE_X / 6 )
+
 	//	---------------------------------
 	//	botones de la pantalla inicial
 	//	esta tecnica permite incorporar al body (no a los layers)
@@ -325,8 +327,9 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	playBtn.innerHTML = "Jugar";
 	document.body.appendChild(playBtn);
 	playBtn.addEventListener ("click", function() {	playPuzzle(1); });
-	playBtn.style.position	= "absolute";     
-	playBtn.style.left		=	STAGE_OFFSET_X + 1.0 * BLOCK_CELL_SIZE;
+	playBtn.style.position	= "absolute";     	
+	//	playBtn.style.left		=	STAGE_OFFSET_X + 1.0 * BLOCK_CELL_SIZE;
+	playBtn.style.left		=	STAGE_OFFSET_X + 1 * dist_X - BLOCK_CELL_SIZE;
 	//	playBtn.style.top			= STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE;	//	0.9 * STAGE_Y;	//	(STAGE_Y - BLOCK_CELL_SIZE);	//	+"px";
 	playBtn.style.top			= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 	//	playBtn.style.height	= btnHeight;			//	0.6 * BLOCK_CELL_SIZE;
@@ -339,7 +342,8 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	helpBtn.addEventListener ("click", function() {  alert("pico en helpBtn") } );// 3. Add event handler
 	helpBtn.style.left			=	"050px";
 	helpBtn.style.position	= "absolute";     
-	helpBtn.style.left			=	STAGE_OFFSET_X + 4.0 * BLOCK_CELL_SIZE;
+	//	helpBtn.style.left			=	STAGE_OFFSET_X + 4.0 * BLOCK_CELL_SIZE;
+	helpBtn.style.left			=	STAGE_OFFSET_X + 2 * dist_X - BLOCK_CELL_SIZE;
 	helpBtn.style.top				= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 	//aboutBtn	// About button in javascript code
@@ -349,7 +353,8 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	aboutBtn.addEventListener ("click", function() {  alert("picoen About button") } );// 3. Add event handler
 	//	aboutBtn.style.cssText = "top:" + (250) + "px; left:" + (50) + "px; position: absolute;";// 4. Position in screen
 	aboutBtn.style.position	= "absolute";     
-	aboutBtn.style.left			=	STAGE_OFFSET_X + 7.0 * BLOCK_CELL_SIZE;
+	//	aboutBtn.style.left			=	STAGE_OFFSET_X + 7.0 * BLOCK_CELL_SIZE;
+	aboutBtn.style.left			=	STAGE_OFFSET_X + 3 * dist_X - BLOCK_CELL_SIZE;
 	aboutBtn.style.top			= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
@@ -359,7 +364,8 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	document.body.appendChild(statusBtn);
 	statusBtn.addEventListener ("click", function() {  pantallaStatus() } );// 3. Add event handler
 	statusBtn.style.position	= "absolute";     
-	statusBtn.style.left			=	STAGE_OFFSET_X + 10.0 * BLOCK_CELL_SIZE;
+	//	statusBtn.style.left			=	STAGE_OFFSET_X + 10.0 * BLOCK_CELL_SIZE;
+	statusBtn.style.left			=	STAGE_OFFSET_X + 4 * dist_X - BLOCK_CELL_SIZE;
 	statusBtn.style.top				= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
@@ -371,7 +377,8 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	//	configBtn.style.cssText = "top:" + (450) + "px; left:" + (050) + "px; position: absolute;";// 4. Position in screen
 	configBtn.style.left = "50px";	
 	configBtn.style.position = "absolute";
-	configBtn.style.left		=	STAGE_OFFSET_X + 13.0 * BLOCK_CELL_SIZE;
+	//	configBtn.style.left		=	STAGE_OFFSET_X + 13.0 * BLOCK_CELL_SIZE;
+	configBtn.style.left			=	STAGE_OFFSET_X + 5 * dist_X - BLOCK_CELL_SIZE;
 	configBtn.style.top 		= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
@@ -385,7 +392,7 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	document.body.appendChild(menuBtn);
 	menuBtn.addEventListener ("click", function() {  MenuInicial() } );// 3. Add event handler
 	menuBtn.style.position = "absolute";
-	menuBtn.style.left	=	STAGE_OFFSET_X + 14 * BLOCK_CELL_SIZE;
+	menuBtn.style.left	=	STAGE_OFFSET_X + 5 * dist_X - BLOCK_CELL_SIZE;
 	menuBtn.style.top		= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
@@ -461,48 +468,41 @@ const btnHeight = 0.5 * BLOCK_CELL_SIZE;
 	nroProbBtn.innerHTML = "Aceptar";
 	document.body.appendChild(nroProbBtn);
 	nroProbBtn.addEventListener ("click", function() {  setNroProbl() } );// 3. Add event handler
-	nroProbBtn.style.left = STAGE_OFFSET_X + 9 * BLOCK_CELL_SIZE;
+	nroProbBtn.style.left = STAGE_OFFSET_X + 4 * BLOCK_CELL_SIZE;
 	nroProbBtn.style.top	= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 	nroProbBtn.style.position = "absolute";
 
 
 	//-----------------------	prueba
-	labelBtn = document.createElement("button");
-	labelBtn.innerHTML = "Problema número (1-103):";
-	document.body.appendChild(labelBtn);
-	//	labelBtn.addEventListener ("click", function() {  setNroProbl() } );// 3. Add event handler
-	labelBtn.style.width = 8 * BLOCK_CELL_SIZE;
-	labelBtn.style.left = STAGE_OFFSET_X + 5 * BLOCK_CELL_SIZE;
-	labelBtn.style.top	= STAGE_OFFSET_Y + 7 * BLOCK_CELL_SIZE;	//	"550px";
-	labelBtn.style.position = "absolute";
-	labelBtn.style.align = "right";
-	//	gConfigLayer.add(labelBtn);
-
-	//	var labelText = new Kinetic.Text({
-	//		x: (gStage.getWidth() * 0.5),
-	//		y: 6 * BLOCK_CELL_SIZE ,
-	//		text: 'Problema número (1-104)',
-	//		fontSize: 0.4 * BLOCK_CELL_SIZE,			//	130,
-	//		fontFamily: FONT_NIVEL3,	//	'Calibri',
-	//		fill: 'black'
-	//	});
-	//	labelText.setOffset({
-	//		x: labelText.getWidth()
-	//	});
-
+	/*
+		labelBtn = document.createElement("button");
+		labelBtn.innerHTML = '???';		//	"Problema número (1-103):";
+		document.body.appendChild(labelBtn);
+		//	labelBtn.addEventListener ("click", function() {  setNroProbl() } );// 3. Add event handler
+		labelBtn.style.height = BLOCK_CELL_SIZE;
+		labelBtn.style.width = BLOCK_CELL_SIZE;   //	9 * BLOCK_CELL_SIZE;
+		labelBtn.style.left = STAGE_OFFSET_X + 5 * BLOCK_CELL_SIZE;
+		labelBtn.style.top	= STAGE_OFFSET_Y + 7 * BLOCK_CELL_SIZE;	//	"550px";
+		labelBtn.style.position = "absolute";
+		labelBtn.style.align = "right";
+	*/
+	
 	// to align text in the middle of the screen, we can set the
 	// shape offset to the center of the text shape after instantiating it
-	//	simpleText.setOffset({
+	//	labelBtn.setOffset({
 	//		x: simpleText.getWidth() / 2
 	//	});
-	//	gConfigLayer.add(labelText);
 
+	
 	nroProblema = document.createElement("INPUT");
 	nroProblema.setAttribute("type", "number");
 	nroProblema.value = nProblema;
 	document.body.appendChild(nroProblema);
 	nroProblema.style.left	= STAGE_OFFSET_X + 12 * BLOCK_CELL_SIZE;	//	"800px";	
 	nroProblema.style.top		= STAGE_OFFSET_Y + 7 * BLOCK_CELL_SIZE;	//	"550px";
+	nroProblema.style.position = "absolute";
+	nroProblema.style.width = 2  * BLOCK_CELL_SIZE;
+	//	nroProblema.style.margin = '6px';
 	nroProblema.style.position = "absolute";
 	nroProblema.style.fontSize = 0.4 * BLOCK_CELL_SIZE;				//	"16px sriracharegular bold";
 	nroProblema.style.font = FONT_NIVEL3;			//	"16px sriracharegular bold";
@@ -570,7 +570,7 @@ function MenuInicial() {
 	hintBtn.style.visibility='hidden';			//	menu ppal
 
 	//	document.getElementById('nroProblema').style.visibility='hidden';
-	writeMessage("cell " +BLOCK_CELL_SIZE + " X,Y " + STAGE_X + "," + STAGE_Y + " SCREEN_X: " + SCREEN_X + " SCREEN_Y: " + SCREEN_Y);
+	//	writeMessage("cell " +BLOCK_CELL_SIZE + " X,Y " + STAGE_X + "," + STAGE_Y + " SCREEN_X: " + SCREEN_X + " SCREEN_Y: " + SCREEN_Y);
 
 	if (DEBUG) { console.log('nProblema: ' + nProblema ); };
 
@@ -1225,16 +1225,15 @@ function addBackgroundLayer()
 	});
 
 
-	var verifRect = new Kinetic.Rect({
-		x: 10 * BLOCK_CELL_SIZE,	//				11 * BLOCK_CELL_SIZE,
-		//	y: (STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE),
-		y: ( STAGE_Y - BLOCK_CELL_SIZE),
-		width:  3 * BLOCK_CELL_SIZE,
-		height: 1.0 * BLOCK_CELL_SIZE,
-		cornerRadius: 10,
-		fill: '#669900'
-
-	});
+//		var verifRect = new Kinetic.Rect({
+//			x: 10 * BLOCK_CELL_SIZE,	//				11 * BLOCK_CELL_SIZE,
+//			//	y: (STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE),
+//			y: ( STAGE_Y - BLOCK_CELL_SIZE),
+//			width:  3 * BLOCK_CELL_SIZE,
+//			height: 1.0 * BLOCK_CELL_SIZE,
+//			cornerRadius: 10,
+//			fill: '#669900'
+//		});
 
 
 	var txtVerifica = new Kinetic.Text({
@@ -1243,12 +1242,12 @@ function addBackgroundLayer()
 		//	y: textOffset,		//	(STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE),
 		y: STAGE_Y - BLOCK_CELL_SIZE,
 		id: 'verifica',
-		text: 'Verifica',
+		text: 'Verifica solucion',
 		fontSize: titleFontSize,
 		fontFamily: 'sriracharegular',
 		fontStyle:"bold",
 		padding: 6,
-		fill: 'black'
+		fill: TITLE_COLOR
 	});
 
 
@@ -1325,7 +1324,7 @@ function addBackgroundLayer()
 	gBackgroundLayer.add(borderDown);
 	gBackgroundLayer.add(borderborder);
 
-	gBackgroundLayer.add(verifRect);
+	//	gBackgroundLayer.add(verifRect);
 	gBackgroundLayer.add(txtVerifica);
 
 }
@@ -2925,7 +2924,7 @@ function hiddenAllButton()
 	configBtn.style.visibility='hidden';
 	nroProbBtn.style.visibility='hidden';
 	nroProblema.style.visibility='hidden';
-	labelBtn.style.visibility='hidden';
+	//	labelBtn.style.visibility='hidden';
 	checkBtn.style.visibility='hidden';
 	//	txtVerifica.style.visibility='hidden';
 
@@ -3903,7 +3902,7 @@ function HaceInitLayer()  {//pantalla de inicio
 		var debugTxt = new Kinetic.Text({
 			x: gStage.getWidth() *0.24,
 			y: (gStage.getHeight() * 0.8),
-			text: 'SCREEN_X, SCREEN_Y, gStage.getHeight(): ' + SCREEN_X + ', ' + SCREEN_Y+ ', ' + gStage.getHeight(),  //	ancho y alto de pantalla en px
+			text: 'SCREEN_X, SCREEN_Y: ' + SCREEN_X + ', ' + SCREEN_Y+ ' STAGE_X, STAGE_Y: ' + STAGE_X + ', ' + STAGE_Y, //	ancho y alto de pantalla en px
 			fontSize: 24,//130,
 			fontFamily: FONT_NIVEL3,//'Calibri',
 			fill: '#aaa'

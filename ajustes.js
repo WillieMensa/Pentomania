@@ -10,9 +10,9 @@ function HaceConfigLayer(){
 	//	if (DEBUG){console.log(' en HaceConfigLayer() ');}
 
 	var simpleText = new Kinetic.Text({
-		x: (gStage.getWidth() * 0.4),
+		x: (gStage.getWidth() * 0.3),
 		y: (gStage.getHeight() * 0.2),
-		text: 'AJUSTES',
+		text: '  AJUSTES DE \nPENTOMANIA',
 		fontSize: 1.5 * BLOCK_CELL_SIZE,			//	130,
 		fontFamily: FONT_NIVEL1,	//	'Calibri',
 		fill: TITLE_COLOR,
@@ -29,7 +29,18 @@ function HaceConfigLayer(){
 	//		x: simpleText.getWidth() / 2
 	//	});
 
+	var labelBtn = new Kinetic.Text({
+		x: 7 * BLOCK_CELL_SIZE,
+		y: 7.1 * BLOCK_CELL_SIZE,
+		text: 'Problema numero (1-103):',
+		fontSize: 0.4 * BLOCK_CELL_SIZE,
+		fontFamily: FONT_NIVEL3,//'Calibri',
+		fill: 'white',
+	});
+
+
 	gConfigLayer.add(simpleText);
+	gConfigLayer.add(labelBtn);
 
 
 	gStage.add(gConfigLayer);
@@ -47,20 +58,18 @@ function haceAjustes() {
 console.log('--------- haciendo Ajustes ------------');
 
 
-hiddenAllButton();
+hiddenAllButton();	//	oculta todos los botones
 
 //	gStage
 gBoardLayer.destroy();
 gBackgroundLayer.destroy();
 gMessageLayer.destroy();
-
 gInitLayer.destroy();
-
 gHelpLayer.destroy();
 gAboutLayer.destroy();
 //	gStatusLayer.destroy();
 
-console.log(' haciendo ConfigLayer ');
+if (DEBUG){console.log(' haciendo ConfigLayer ')}
 
 HaceConfigLayer();
 
@@ -97,7 +106,7 @@ if (DEBUG) { console.log('nProblema: ' + nProblema +
 //	document.getElementById('nroProblema').value = nProblema;
 menuBtn.style.visibility='visible';			//	menu ppal
 nroProbBtn.style.visibility='visible';
-labelBtn.style.visibility='visible';
+//	labelBtn.style.visibility='visible';
 nroProblema.style.visibility='visible';
 //	nroProblema.disabled=false;
 

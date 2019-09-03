@@ -1050,7 +1050,8 @@ function randomPolyInitPos(availablePoly)
 	if (DEBUG) {	console.log( 'BLOCK_CELL_SIZE, (ppl + 1): ' + BLOCK_CELL_SIZE  + ', ' + (ppl + 1) +
 					'\n9 * BLOCK_CELL_SIZE / (ppl + 1): ' + 9 * BLOCK_CELL_SIZE / (ppl + 1) )}
 
-	var distance_X =  10 * BLOCK_CELL_SIZE / (ppl + 1);
+	//	var distance_X =  10 * BLOCK_CELL_SIZE / (ppl + 1);
+	var distance_X =  Math.floor((STAGE_X - 10 * BLOCK_CELL_SIZE) / (ppl + 1));
 	var distance_Y =  Math.floor(0.7 * (STAGE_Y - BLOCK_CELL_SIZE) / ((availablePoly/ppl) + 1));
 
 	polyInitPos=[];
@@ -2661,8 +2662,8 @@ function insertCheck()
 
 		nProblema = (nProblema < CANTPROBLEMAS) ? (parseInt(nProblema)+1.0) : nProblema
 	
-		writeMessage('Ahora viene el problema ' + nProblema);
-		if (DEBUG) { console.log('nProblema: ' + nProblema ) };
+		//	writeMessage('Ahora viene el problema ' + nProblema);
+		      if (DEBUG) { console.log('nProblema: ' + nProblema ) };
 
 		return;
 	}
@@ -3283,13 +3284,14 @@ function nextButton()
 			document.body.style.cursor = 'default';
 	});
 
-	nextGroup.on('click', function() {
+	nextGroup.on('pointerdown click', function() {
 		//	setNextLevel();
 		setNextProblem();
 		//	waitIdleDemo();
 		createPuzzle(1, true);
 		enableAllButton();
 	});
+
 }
 
 //-----------------------

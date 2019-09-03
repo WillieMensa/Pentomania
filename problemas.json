@@ -4,7 +4,6 @@
 // ----------------------------------------------------------------------------
 
 const problemas = [
-	{	"nro" :  "0",	"pieza" : "L",	"posX" : 1,	"posY" : 1 },
 	{	"nro" :  "1",	"pieza" : "L",	"posX" : 1,	"posY" : 7 },
 	{	"nro" :  "2",	"pieza" : "I",	"posX" : 1,	"posY" : 1 },
 	{	"nro" :  "3",	"pieza" : "I",	"posX" : 2,	"posY" : 1 },
@@ -107,6 +106,6 @@ const problemas = [
 	{	"nro" :"100", "pieza" : "L",	"posX" : 6,	"posY" : 5 },
 	{	"nro" :"101", "pieza" : "L",	"posX" : 6,	"posY" : 2 },
 	{	"nro" :"102", "pieza" : "I",	"posX" : 1,	"posY" : 3 },
-	{	"nro" :"103", "pieza" : "O",	"posX" : 4,	"posY" : 4 },
+	{	"nro" :"103", "pieza" : "O",	"posX" : 4,	"posY" : 4 }
 ]
 ;

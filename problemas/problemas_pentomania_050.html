@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>PROBLEMAS PENTOMANIA</title>
+	<meta name="description" content="PENTOMANIA">
+	<meta name="keywords" content="Lógica, Rompecabezas, representación gráfica, Desarrollo,Sistemas de Representación,CAD 3D, dibujo tecnico,elipses,empalmes,geometria descriptiva, ingenio, proyecciones, vistas">
+
+</head>
+
+<body onload="init()">
+
+<div class="container">
+	<!-- Contenido de la pagina -->
+	<a name="TopOfPage"></a>
+
+	<div>
+		<h1>Impresion problemas pentomania</h1>
+
+		<button onclick="printDiv(false)">Imprimir documento</button>
+
+	</div>
+
+
+
+	<div class="imprimir" id="imprimir" style="background-color:#bdf" >
+
+		<object id="svg-object" data="hoja_problemas.svg" type="image/svg+xml"></object>
+
+	</div>
+
+
+
+	<!-- el proximo script contiene const problemas, array en formato json -->
+	<script type="text/javascript" src="problemas.json"></script>
+	<!-- <script src="polyomino4.js"></script> -->
+
+
+	<!-- inicio de los scripts -->
+	<script type="text/javascript">
+
+		//	console.log(problemas);
+
+		const	
+			//	DEBUG = false;
+			DEBUG = true;
+
+		var nProblema	= 1,
+			svgObject = undefined;
+
+
+
+		function init() {
+
+			svgObject = document.getElementById('svg-object');
+
+			if (DEBUG){
+				console.log('dibujando grilla');
+				DibujaGrillaA4();
+			}
+
+			GenProblema(1);
+
+		};
+
+		
+		function recorrerObjeto(objeto)
+		{
+			var respuesta="";
+			for (var i in objeto)
+			{
+				respuesta+=i+": "+objeto[i]+"<br>";
+			}
+			return respuesta
+		}
+
+
+
+		function DibujaGrillaA4() {
+			//	dibujar grilla A4 de fondo
+			const	
+				ANCHO = 205, 
+				ALTO = 295,
+				PASO = 10;
+
+
+			//	lineas horizontales
+			var i = PASO;
+			while ( i<ALTO ) {
+				var lElement = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+				lElement.setAttributeNS(null, 'x1', 0);
+				lElement.setAttributeNS(null, 'y1', (i) + 'mm' );
+				lElement.setAttributeNS(null, 'x2', (ANCHO) + 'mm');
+				lElement.setAttributeNS(null, 'y2', (i) + 'mm' );
+				lElement.setAttributeNS(null, 'class', 'auxiliar');
+				svgObject.appendChild(lElement);			
+
+				i += PASO;
+			}
+
+			//	lineas horizontales
+			i = PASO;
+			while ( i < ANCHO ) {
+				var lElement = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+				lElement.setAttributeNS(null, 'x1', (i) + 'mm' );
+				lElement.setAttributeNS(null, 'y1', 0);
+				lElement.setAttributeNS(null, 'x2', (i) + 'mm' );
+				lElement.setAttributeNS(null, 'y2', (ALTO) + 'mm');
+				lElement.setAttributeNS(null, 'class', 'auxiliar');
+				svgObject.appendChild(lElement);			
+
+				i += PASO;
+			}
+
+		}
+
+
+		function printDiv() {
+			var objeto=document.getElementById('imprimir');
+			//obtenemos el objeto a imprimir
+			var ventana=window.open('','_blank');  //abrimos una ventana vacía nueva
+			ventana.document.write(objeto.innerHTML);  //imprimimos el HTML del objeto en la nueva ventana
+			ventana.document.close();  //cerramos el documento
+			ventana.print();  //imprimimos la ventana
+			ventana.close();  //cerramos la ventana
+		}
+
+
+	function GenProblema(nProblema) {
+		//	nProblema = 1;
+
+		//	trato de acceder al documento SVG
+		console.log(svgObject);
+
+		//	var svg = svgObject.getElementById('svg-object-00');
+		var svg = document.getElementsByTagName('svg')[0];
+		//	var svg = svgObject.getElementById('svg-object-00').contentDocument;
+		//	var svg = document.getElementById('svg-object-00').contentDocument;
+		//	var svg = document.getElementById('svg-object-00');
+    console.log(svg);
+
+    var dwgObject00 = document.getElementById('trazado00');
+    //	var dwgObject00 = document.getElementById('svg-object-00');
+    //	var dwgObject00 = document.getElementById('svg-object-00').contentDocument;
+    console.log('dwgObject00: ');
+    console.log(dwgObject00);
+
+	  var objTrazado = document.getElementById('trazado00');
+    console.log(objTrazado);
+
+    //	var dwgObject00 = document.getElementById('svg-object-00').contentDocument;
+    //	console.log(dwgObject00);
+
+	  var nro = dwgObject00.getElementById('nroProblema');
+
+		var textNode = nro.childNodes[0];
+		textNode.nodeValue = nProblema;
+		console.log ( textNode );
+
+		//	element.setAttributeNS(null, 'y', y + 10);
+
+		//	textNode.nodeValue = aSumaPolig[i] ;
+
+    //	console.log(dwgProblema);
+    //	svgTitulo.setAttributeNS(null, 'x', 5900);
+    //	svgTitulo.setAttributeNS(null, 'y', 0);
+
+    pagina = document.getElementById('pagina');
+		pagina.appendChild(dwgProblema);
+		console.log(pagina);
+
+
+	}
+
+
+
+
+	//-------------------------------------------------
+	//	funciones exclusivas para depuracion
+	//-------------------------------------------------
+	function mostrarPropiedades(objeto, nombreObjeto) {
+		//	https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Trabajando_con_objectos
+
+		var resultado = "";
+		for (var i in objeto) {
+			//	if (objeto.hasOwnProperty(i)) {
+				resultado += nombreObjeto + "." + i + " = " + objeto[i] + "\n";
+			//	}
+		}
+		return resultado;
+	}
+
+
+	</script>
+
+	<hr class="grosa">
+	<!-- fin contenido -->
+</div>
+
+</body>
+</html>
+

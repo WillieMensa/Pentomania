@@ -2,7 +2,7 @@
 <widget 
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "ar.com.ingverger.pentomania"
-    version     = "0.6.65" >
+    version     = "0.6.66" >
 
 	<name>Pentomania</name>
 
@@ -22,6 +22,7 @@
 		Guillermo Verger
 	</author>
 
+	<preference name="android-targetSdkVersion"  value="28" /> 
     <preference name="orientation"	value="landscape" />        <!-- all: default means both landscape and portrait are enabled -->
 
 	<content src="index.html" />

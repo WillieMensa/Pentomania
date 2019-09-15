@@ -1,6 +1,9 @@
 ﻿/*	=============================================================================
 	Pentomino Puzzle
 
+	#### version     = "0.6.66"	- 15/9/2019
+	Ajusto para la version de API 28
+
 	#### version     = "0.6.65"	- 23/8/2019
 	Retomo la determinacion de variables para pantalla original (que permitia mover en pantallas chicas)
 	Abandono el uso de escalas Css
@@ -76,7 +79,7 @@
 //=========
 // define
 //=========
-const versionString="0.6.65"			//	lleva el numero de version actual
+const versionString="0.6.66"			//	lleva el numero de version actual
 
 //-------------------------------------
 //	https://www.w3schools.com/colors/colors_picker.asp
@@ -991,12 +994,6 @@ function initBoardState(boardX, boardY, numOfFixedBlocks, newPuzzle)
 	wTetromPos = { x:problemas[nFilaProblema].posX, y:problemas[nFilaProblema].posY };	//	posicion del tetromino fijo
 	var str = "LSIOT";
 	nTetromId	= str.indexOf(problemas[nFilaProblema].pieza);
-
-	if (DEBUG2)	{
-		console.log('contenido de problemas[nFilaProblema] \n'+
-			mostrarPropiedades(problemas[nFilaProblema], 'problemas[nFilaProblema]' ) );
-		console.log('wTetromPos, nTetromId: ' +	wTetromPos.x +', ' + wTetromPos.y +', ' + nTetromId	);
-	}
 
 	//	-------------------------------------------------------------------------------------
 	//	Atencion: antes de buscar una solución y colocar bloques fijos se debería colocar el cuadrómino.
@@ -3919,24 +3916,5 @@ function HaceInitLayer()  {//pantalla de inicio
 
 function updateProb() {
 
-}
-
-
-
-
-
-//-------------------------------------------------
-//	funciones exclusivas para depuracion
-//-------------------------------------------------
-function mostrarPropiedades(objeto, nombreObjeto) {
-	//	https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Trabajando_con_objectos
-
-	var resultado = "";
-	for (var i in objeto) {
-		//	if (objeto.hasOwnProperty(i)) {
-			resultado += nombreObjeto + "." + i + " = " + objeto[i] + "\n";
-		//	}
-	}
-	return resultado;
 }
 

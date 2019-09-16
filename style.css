@@ -30,14 +30,6 @@
 
 
 @font-face {
-		font-family: 'Carter One';
-		src: url('carter-one.woff2') format('woff2'),
-				 url('carter-one.woff') format('woff');
-		font-weight: normal;
-		font-style: normal;
-}
-
-@font-face {
 		font-family: 'robotomedium';
 		src: url('roboto-medium-webfont.woff2') format('woff2'),
 				 url('roboto-medium-webfont.woff') format('woff');

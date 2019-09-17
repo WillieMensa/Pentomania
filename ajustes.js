@@ -79,16 +79,6 @@ console.log(' despues de ConfigLayer ');
 //	helpBtn.disabled=false;
 //	aboutBtn.disabled=false;
 
-//	document.getElementById('ProblemSelect').style.cssText = 
-//		"top:" + (STAGE_OFFSET_Y + 0.6 * STAGE_Y) + "px; left:" + 
-//		(STAGE_OFFSET_X + 0.33 * STAGE_X) + "px; position: absolute; font:" + (16) + "px roboto white";
-//	document.getElementById('ProblemSelect').style.visibility='visible';
-//	document.getElementById('ProblemSelect').style.disabled=false;
-
-
-//	if (DEBUG) {	console.log('ProblemSelect.style.cssText: ' + document.getElementById('ProblemSelect').style.cssText)}
-
-//	document.getElementById('nroProblema').style.cssText = "font: bold 20px roboto grey";
 nroProblema.value = nProblema;
 //	document.getElementById('nroProblema').style.value = parseInt(nProblema);
 //	document.getElementById('nroProblema').style.defaultValue = nProblema;

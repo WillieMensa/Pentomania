@@ -4,14 +4,6 @@
 */
 
 @font-face {
-    font-family: 'bangersregular';
-    src: url('bangers-regular-webfont.woff2') format('woff2'),
-         url('bangers-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'luckiest_guyregular';
     src: url('luckiestguy-regular-webfont.woff2') format('woff2'),
          url('luckiestguy-regular-webfont.woff') format('woff');
@@ -26,15 +18,6 @@
          url('sriracha-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
-
-
-@font-face {
-		font-family: 'robotomedium';
-		src: url('roboto-medium-webfont.woff2') format('woff2'),
-				 url('roboto-medium-webfont.woff') format('woff');
-		font-weight: normal;
-		font-style: normal;
 }
 
 

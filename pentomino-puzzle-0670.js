@@ -1,6 +1,9 @@
 ﻿/*	=============================================================================
 	Pentomino Puzzle
 
+	#### version     = "0.6.70"	- 16/9/2019
+	Depuracion archivo. Eliminar codigo innecesario
+
 	#### version     = "0.6.66"	- 15/9/2019
 	Ajusto para la version de API 28
 
@@ -79,7 +82,7 @@
 //=========
 // define
 //=========
-const versionString="0.6.66"			//	lleva el numero de version actual
+const versionString="0.6.70"			//	lleva el numero de version actual
 
 //-------------------------------------
 //	https://www.w3schools.com/colors/colors_picker.asp
@@ -113,9 +116,9 @@ const	TITLE_COLOR = '#8a2';
 //-----------------------------------------------------
 //	fonts para textos
 const
-	FONT_NIVEL1 = "luckiest_guyregular",	//	titulo:	"Bangers",	"Luckiest Guy",	"Titan One", "Sigmar One"
-	FONT_NIVEL2 = "robotomedium",					//	textos:
-	FONT_NIVEL3 = "sriracharegular"				//	textos:
+	FONT_NIVEL1 = "luckiest_guyregular",
+	FONT_NIVEL2 = "sriracharegular",
+	FONT_NIVEL3 = "sriracharegular"
 
 //-------------------------------------------------------------------------
 // block colors:
@@ -290,9 +293,7 @@ function init()
 
 
 	//	Preparacion de pantallas
-	//	HaceInitLayer();
 	HaceHelpLayer();	
-	//	HaceConfigLayer();
 	HaceAboutLayer();
 	HaceStatusLayer();
 
@@ -447,24 +448,6 @@ var dist_X = Math.floor(STAGE_X / 6 )
 	checkBtn.style.width = BLOCK_CELL_SIZE;
 
 
-	//	document.getElementById('check').style.cssText = 
-	//		"top:" + (STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE)+"px; left:" + (12.0 * BLOCK_CELL_SIZE) + 
-	//		"px; position: absolute; font:" + (20) + "px";	//	 roboto white";
-
-	//	var x = document.getElementById("mySelect").selectedIndex;
-	//	alert( document.getElementById("check") );
-	//	alert(document.getElementsByTagName("check") );
-
-	//	var x = document.getElementById('check');
-	
-	//	document.getElementById('check').style.cssText = "top:" + (SCREEN_Y - 40) + "px; left:" + (SCREEN_X - checkSolutionShift) + "px; position: absolute;";
-
-	//	x.style.left = 13.2 * BLOCK_CELL_SIZE;
-	//	x.style.top = (STAGE_Y-BLOCK_CELL_SIZE)+"px";
-	//	x.style.height		= 0.6 * BLOCK_CELL_SIZE;
-	//	x.style.position = "absolute";
-	//	x.style.font = "16px sriracharegular bold";
-
 
 	//	nroProbBtn boton aceptar numero de problema
 	nroProbBtn = document.createElement("button");
@@ -476,27 +459,7 @@ var dist_X = Math.floor(STAGE_X / 6 )
 	nroProbBtn.style.position = "absolute";
 
 
-	//-----------------------	prueba
-	/*
-		labelBtn = document.createElement("button");
-		labelBtn.innerHTML = '???';		//	"Problema número (1-103):";
-		document.body.appendChild(labelBtn);
-		//	labelBtn.addEventListener ("click", function() {  setNroProbl() } );// 3. Add event handler
-		labelBtn.style.height = BLOCK_CELL_SIZE;
-		labelBtn.style.width = BLOCK_CELL_SIZE;   //	9 * BLOCK_CELL_SIZE;
-		labelBtn.style.left = STAGE_OFFSET_X + 5 * BLOCK_CELL_SIZE;
-		labelBtn.style.top	= STAGE_OFFSET_Y + 7 * BLOCK_CELL_SIZE;	//	"550px";
-		labelBtn.style.position = "absolute";
-		labelBtn.style.align = "right";
-	*/
-	
-	// to align text in the middle of the screen, we can set the
-	// shape offset to the center of the text shape after instantiating it
-	//	labelBtn.setOffset({
-	//		x: simpleText.getWidth() / 2
-	//	});
 
-	
 	nroProblema = document.createElement("INPUT");
 	nroProblema.setAttribute("type", "number");
 	nroProblema.value = nProblema;
@@ -511,25 +474,6 @@ var dist_X = Math.floor(STAGE_X / 6 )
 	nroProblema.style.font = FONT_NIVEL3;			//	"16px sriracharegular bold";
 	nroProblema.style.textAlign = 'right';
 	nroProblema.style.background = '#99cc00';
-	//	nroProblema.style.float = "right";
-
-/*
-	hintBtn = document.createElement("button");
-	hintBtn.innerHTML = "Ayudita";
-	document.body.appendChild(hintBtn);
-	hintBtn.addEventListener ("click", function() {  hintsButton() } );
-	//	hintBtn.style.cssText = "top:" + (SCREEN_Y-80) + "px; left:" + (500) + "px; position: absolute;";
-	hintBtn.style.position = "absolute";
-	hintBtn.style.left			=	STAGE_OFFSET_X + 7.0 * BLOCK_CELL_SIZE;
-	hintBtn.style.top				= STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE;
-
-
-
-*/
-
-	//	botones no creados
-	//	salir		getOutBtn,		
-	//					fakeBtn				
 
 }
 
@@ -553,15 +497,6 @@ function MenuInicial() {
 	HaceInitLayer();
 
 
-	//	enableMnuButton()		// enable buttons in main menu
-	//	helpBtn.disabled=false;
-	//	aboutBtn.disabled=false;
-	//	configBtn.disabled=false;
-
-	//	visibleMnuButton()
-	//	helpBtn.visible = false;
-	//	aboutBtn.visible = false;
-	//	configBtn.visible = false;
 
 	aboutBtn.style.visibility='visible';
 	helpBtn.style.visibility='visible';			//	help button
@@ -572,10 +507,6 @@ function MenuInicial() {
 	menuBtn.style.visibility='hidden';			//	menu ppal
 	hintBtn.style.visibility='hidden';			//	menu ppal
 
-	//	document.getElementById('nroProblema').style.visibility='hidden';
-	//	writeMessage("cell " +BLOCK_CELL_SIZE + " X,Y " + STAGE_X + "," + STAGE_Y + " SCREEN_X: " + SCREEN_X + " SCREEN_Y: " + SCREEN_Y);
-
-	if (DEBUG) { console.log('nProblema: ' + nProblema ); };
 
 }
 
@@ -611,25 +542,13 @@ function playPuzzle()
 
 	hintBtn.style.visibility='visible';			//	hint button
 	menuBtn.style.visibility='visible';			//	menu ppal
-	//	getOutBtn,		//	salir
 
-	//	document.getElementById('levelButton').style.visibility='visible';
-
-	//	document.getElementById('hintsButton').style.visibility='visible';
-	//	document.getElementById('newButton').style.visibility='visible';
-	//	document.getElementById('resetButton').style.visibility='visible';
-	//	document.getElementById('initButton').style.visibility='visible';
 	giraPieza.style.visibility='visible';
 	volteaPieza.style.visibility='visible';
 
 
 	//checkbox
 	checkBtn.style.visibility='visible';
-	//	txtVerifica.style.visibility='visible';
-	//	document.getElementById('checkboxtext').style.visibility='visible';
-	//	document.getElementById('checkButton').style.visibility='visible';
-
-	//-----------------------------------------------------
 
 }
 
@@ -692,30 +611,6 @@ function initLanguage()		//	para adaptar a diferentes idiomas
 function initScreenVariable()
 {
 	var screenWidth = 0, screenHeight = 0;	// ancho y alto de pantallla
-
-	//	reemplazo para agrandar tablero
-	//	var maxStageX = 1000;
-	//	var maxStageY = 800;
-	//	var maxCellSize = 40;
-
-/*
-	variables originales
-	var maxStageX = 1000;
-	var maxStageY = 600;
-	var maxCellSize = 64;
-
-	var midStageX = 800;
-	var midStageY = 600;
-	var midCellSize = 50;		//	var midCellSize = 32;
-
-	var miniStageX = 600;
-	var miniStageY = 400;
-	var miniCellSize = 36;	// 24;
-
-	var microStageX = 400;
-	var microStageY = 300;
-	var microCellSize = 32;	// 20;
-*/
 
 	var maxStageX = 1080;
 	var maxStageY = 720;
@@ -791,17 +686,6 @@ function initScreenVariable()
 		break;
 	}
 
-	if (DEBUG){
-		console.log( 'Parametros de pantalla'	);
-		console.log( 'SCREEN_X: ' +		SCREEN_X       );
-		console.log( 'SCREEN_Y: ' + 		SCREEN_Y       );
-		console.log( 'STAGE_X: ' + 		STAGE_X        );
-		console.log( 'STAGE_OFFSET_X: ' + 	STAGE_OFFSET_X );
-		console.log( 'STAGE_Y: ' + 		STAGE_Y        );
-		console.log( 'STAGE_OFFSET_Y: ' +  	STAGE_OFFSET_Y );
-		console.log( 'BLOCK_CELL_SIZE: ' +  BLOCK_CELL_SIZE );
-	}
-
 }
 
 
@@ -813,10 +697,6 @@ function initScreenPosColor()
 	document.getElementById('container').style.cssText = "top:" + (STAGE_OFFSET_Y) + "px; left:" + (STAGE_OFFSET_X) + "px; position: absolute;";
 
 	document.body.style.background = BACKGROUND_COLOR; //body background color
-
-	//	document.getElementById('check').style.cssText = 
-	//		"top:" + (STAGE_OFFSET_Y + 10 * BLOCK_CELL_SIZE)+"px; left:" + (12.0 * BLOCK_CELL_SIZE) + 
-	//		"px; position: absolute; font:" + (20) + "px";	//	 roboto white";
 	
 }
 
@@ -895,11 +775,6 @@ function clearStageLayer()
 	gAboutLayer.removeChildren();
 	gStatusLayer.remove();
 
-	//	console.log( 'clearStageLayer() -----------' );
-
-	//	gStage.removeChildren();
-	//	console.log( gStage );
-
 }
 
 
@@ -945,7 +820,6 @@ function createPuzzle(newPuzzle, activePoly)
 	//	if(activePoly) activePolygon();		//	original pero siempre verdadero
 	activePolygon();
 
-	//	writeFinishMsg(); //for test only
 }
 
 
@@ -976,8 +850,6 @@ function initBoardState(boardX, boardY, numOfFixedBlocks, newPuzzle)
 	addBackgroundLayer();	
 	addBoard2Layer();
 	
-	createOperatorObject();
-	addOperator2Layer();
 	
 	gBoardState = createBoard(SCREEN_BOARD_X, SCREEN_BOARD_Y); //external function
 	clearPolyInsertOrder(); //for hints 
@@ -1013,10 +885,6 @@ function initBoardState(boardX, boardY, numOfFixedBlocks, newPuzzle)
 	//	la que sigue genera el gPolyGroup
 	addBlock2Layer(0);		//	numOfFixedBlocks == 0;
 
-	//	wAddTetrom2Layer();
-
-
-	if (DEBUG) {	console.log( 'initBoardState -----------' )}
 
 	gStage.add(gBackgroundLayer);
 	gStage.add(gBoardLayer);
@@ -1074,21 +942,13 @@ function randomPolyInitPos(availablePoly)
 		if (DEBUG){ var dbgTxt = '\ncoordenadas pos pentos ' };
 
 		polyInitPos[id] = {
-			//	x:( STAGE_OFFSET_X + boardStartX + BOARD_WIDTH ) + (distance_X * (0.6 + (index % ppl))),
-			//	x:( 0.4 * STAGE_OFFSET_X + boardStartX + BOARD_WIDTH ) + (distance_X * (0.4 + (index % ppl))),
-			//	x: STAGE_OFFSET_X + 10 * BLOCK_CELL_SIZE + (distance_X * (0.9 + (index % ppl))),
 			x: 10 * BLOCK_CELL_SIZE + (distance_X * (0.9 + (index % ppl))),
 			y:Math.floor( distance_Y * (1.6 + (index % (( availablePoly / ppl ) + 1 ))))
 
 		};
 
-		//	if (DEBUG)	{ console.log( 'id: ' + id + ', x,y: ' + Object.values(polyInitPos[id]) )	}
 
 	}
-	if (DEBUG) {	console.log( 'distance_X, distance_Y: ' + distance_X + ', ' +  distance_Y + 
-					'\nSTAGE_OFFSET_X+ 10*BLOCK_CELL_SIZE+(distance_X * 0.9 )\n' +
-					(STAGE_OFFSET_X + (10 * BLOCK_CELL_SIZE) + (distance_X * 0.9) )
-		)};
 
 }
 
@@ -1223,17 +1083,6 @@ function addBackgroundLayer()
 	});
 
 
-//		var verifRect = new Kinetic.Rect({
-//			x: 10 * BLOCK_CELL_SIZE,	//				11 * BLOCK_CELL_SIZE,
-//			//	y: (STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE),
-//			y: ( STAGE_Y - BLOCK_CELL_SIZE),
-//			width:  3 * BLOCK_CELL_SIZE,
-//			height: 1.0 * BLOCK_CELL_SIZE,
-//			cornerRadius: 10,
-//			fill: '#669900'
-//		});
-
-
 	var txtVerifica = new Kinetic.Text({
 		//	x: STAGE_OFFSET_X + 11 * BLOCK_CELL_SIZE,	//				11 * BLOCK_CELL_SIZE,
 		x: 11 * BLOCK_CELL_SIZE,	//				11 * BLOCK_CELL_SIZE,
@@ -1312,8 +1161,6 @@ function addBackgroundLayer()
 
 
 	gBackgroundLayer.add(background);
-	//	gBackgroundLayer.add(titleText1);
-	//	gBackgroundLayer.add(titleText2);
 	gBackgroundLayer.add(titleText1);
 	gBackgroundLayer.add(boardBackground);
 	gBackgroundLayer.add(borderUp);
@@ -1375,34 +1222,6 @@ function addBlock2Layer(fixedBlock)
 }
 
 
-
-//	//----------------------------------
-//	//	esta funcion se prodria eliminar; no la usa nadie. 22/7/2019
-//	// restore polygon blocks to layer
-//	//----------------------------------
-//	function restoreBlock2Layer(fixedBlock)
-//	{
-//		//-------------------------------------------------------------------
-//		// if restore from backup it can not drag again with kineticJS 4.4.0
-//		// so re-create object and copy attr from backup - 04/04/2013
-//		//-------------------------------------------------------------------
-//		clonePolygon(saveInfo.gPolyGroup, 0);			//	fixedBlock);
-//	
-//		for(var g = 0; g < gPolyGroup.length; g++) {
-//			var poly = gPolyGroup[g].poly;
-//			gBoardLayer.add(poly);
-//	
-//			//restore already inserted poly
-//			if(poly.pos.x > 0) {
-//				poly.setZIndex(gBlockUsed+1);//after (board + blockUsed)
-//				clearShadow(poly);
-//				setColor(poly, 1); //set normal color
-//				gBlockCellUsed += gPolyGroup[g].block.length;
-//				gBlockUsed++;
-//			}
-//	
-//		}
-//	}
 
 //======================================
 // BEGIN for create polygon
@@ -2077,7 +1896,7 @@ function activePolygon()
 				this.setZIndex(gBlockUsed+1); //after (board + blockUsed)
 
 				clearFocusPoly(this);
-				hideOperatorObject();
+				//	hideOperatorObject();
 
 				//	boton operador
 				//	ocultaBotonOperador();
@@ -2096,36 +1915,9 @@ function activePolygon()
 			//dumpBoard(gBoardState); //for debug only
 		});
 
-//			poly.on('click', function() {
-//	
-//				writeMessage( "*** click ***" );
-//				//	console.log( "inicio click, this: " + Object.values(this));
-//	
-//				clearFocusPoly(getLastFocusPoly());
-//				hideOperatorObject(); //remove operator from old position
-//	
-//				//	boton operador
-//				//	ocultaBotonOperador();
-//	
-//				removeFromBoard(this);
-//				setFocusPoly(this);
-//				setShadow(this);
-//				showOperatorObject(this); //enable operator at new position
-//	
-//				//	y habilito el boton equivalente
-//				muestraBotonOperador(this);
-//	
-//				//dumpBoard(gBoardState); //for debug only
-//			});
-
-/*
-		poly.on('dragmove click', function() {
-			// for debug only
-			//writeMessage("(x,y) = (" + this.getPosition().x + "," + this.getPosition().y + '), offset(x,y)=(' + this.getOffset().x + ", " + this.getOffset().y  + "), scale = (" + this.getScale().x + ", " + this.getScale().y + "), RotationDeg = " + this.getRotationDeg() );
-		});
-*/
 	}
 }
+
 
 function inactivePolygon()
 {
@@ -2224,191 +2016,14 @@ function flipFocusPoly()
 	////gBoardLayer.draw();
 }
 
-var rotateObject; //a rotate object, display on the focus polygon
-var flipObject;   //a flip object, display on the focus polygon
-
-//--------------------------------
-// create flip & rotate operator
-//--------------------------------
-function createOperatorObject()
-{
-	var radius = (BLOCK_CELL_SIZE)/4;
-
-	rotateObject = new Kinetic.Shape({
-		drawFunc: function(canvas) {
-			var context = canvas.getContext();
-			//create a circle, opacity = 0.3
-			context.beginPath();
-			context.arc(0, 0, radius, 0, 2.0 * Math.PI, false);
-			context.fillStyle =OPERATOR_CIRCLE_COLOR;
-			context.fill();
-			canvas.fill(this); //for pointer selection
 
 
-			//create a rotate arrow, opacity = 1.0
-			context.beginPath();
-			context.globalAlpha=1.0
-			context.arc(0, 0, radius, 1.3 * Math.PI, 2.1 * Math.PI, false);
-			context.lineTo(2*radius/3,-radius/3);
-			context.lineTo(radius+radius/10,-radius/2.5);
-			context.arc(0, 0, radius, 2.1 * Math.PI, 2.1 * Math.PI, true);
-			context.arc(0, 0, radius, 2.1 * Math.PI, 1.3 * Math.PI, true);
-			context.stroke();
-			canvas.fillStroke(this);
-
-			//create a rotate arrow, opacity = 1.0
-			context.beginPath();
-			context.arc(0, 0, radius, 2.3 * Math.PI, 1.1 * Math.PI, false);
-			context.lineTo(-2*radius/3,radius/3);
-			context.lineTo(-radius-radius/10,+radius/2.5);
-			context.lineTo(-radius,0);
-			context.arc(0, 0, radius, 1.1 * Math.PI, 1.1 * Math.PI, true);
-			context.arc(0, 0, radius, 1.1 * Math.PI, 2.3 * Math.PI, true);
-			context.stroke();
-			canvas.fillStroke(this);
-
-		},
-		opacity: 0.3,
-//		fill: OPERATOR_CIRCLE_COLOR,
-		stroke: OPERATOR_COLOR, //blue
-		strokeWidth: 2
-	});
-
-
-	// add cursor style
-	rotateObject.on('pointerover', function() {
-		document.body.style.cursor = 'pointer';
-	});
-
-	rotateObject.on('pointerout', function() {
-		document.body.style.cursor = 'default';
-	});
-
-	rotateObject.on('click', function() {
-		rotateFocusPoly();
-	});
-
-	//---------------------------------------------------------------
-
-	flipObject = new Kinetic.Shape({
-		drawFunc: function(canvas) {
-			var context = canvas.getContext();
-			//create a circle, opacity = 0.3
-			context.beginPath();
-			context.arc(0, 0, radius, 0, 2.0 * Math.PI, false);
-			context.fillStyle =OPERATOR_CIRCLE_COLOR;
-			context.fill();
-			canvas.fill(this); //for pointer selection
-
-
-			//create a left arrow, opacity = 1.0
-			context.beginPath();
-			context.globalAlpha=1.0
-
-			context.lineTo(radius/10,0);
-			context.lineTo(4*radius/5,0);
-			context.lineTo(4*radius/5,-radius/5);
-			context.lineTo(radius+radius/5,0);
-			context.lineTo(4*radius/5,radius/5);
-			context.lineTo(4*radius/5,0);
-			context.lineTo(radius/10,0);
-			context.fill();
-			canvas.fill(this);
-			//context.stroke(context);
-			canvas.fillStroke(this);
-
-			//create a right arrow, opacity = 1.0
-			context.beginPath();
-			context.lineTo(-radius/10,0);
-			context.lineTo(-4*radius/5,0);
-			context.lineTo(-4*radius/5,-radius/5);
-			context.lineTo(-radius-radius/5,0);
-			context.lineTo(-4*radius/5,+radius/5);
-			context.lineTo(-4*radius/5,0);
-			context.lineTo(-radius/10,0);
-			context.fill();
-			canvas.fill(this);
-			//context.stroke(context);
-			canvas.fillStroke(this);
-		},
-		opacity: 0.3,
-//		fill: OPERATOR_CIRCLE_COLOR,
-		stroke: OPERATOR_COLOR, //blue
-		strokeWidth: 2
-	});
-
-	// add cursor style
-	flipObject.on('pointerover', function() {
-		document.body.style.cursor = 'pointer';
-	});
-
-	flipObject.on('pointerout', function() {
-		document.body.style.cursor = 'default';
-	});
-
-	flipObject.on('click', function() {
-		flipFocusPoly();
-	});
-}
 
 var rotateOperatorStatus = 0; //0: remove, 1:add
 var flipOperatorStatus = 0; //0: remove, 1:add
 
-//---------------------------------------------
-// Add flip & rotate object to layer (kinetic)
-//---------------------------------------------
-function addOperator2Layer()
-{
-	gBoardLayer.add(rotateObject);
-	gBoardLayer.add(flipObject);
-	rotateObject.hide();
-	flipObject.hide();
-	rotateOperatorStatus = 0;
-	flipOperatorStatus = 0;
-}
 
-function showOperatorObject(poly)
-{
-	if (DEBUG) {	console.log('----	function showOperatorObject(poly)	')}
 
-	var cx = poly.getPosition().x;
-	var cy = poly.getPosition().y;
-
-	if(poly.hasRotate) {
-		rotateObject.show();
-		rotateObject.setX(cx);
-		rotateObject.setY(cy);
-		rotateObject.moveToTop();
-		rotateOperatorStatus = 1;
-	}
-
-	if(poly.hasFlip) {
-		flipObject.show();
-		flipObject.setX(cx);
-		flipObject.setY(cy -(BLOCK_CELL_SIZE)*2/3);
-		flipObject.moveToTop();
-		flipOperatorStatus = 1;
-	}
-	gBoardLayer.draw();
-
-}
-
-//--------------------------------------------------
-// Remove flip & rotate object from layer (kinetic)
-//--------------------------------------------------
-function hideOperatorObject()
-{
-	if(rotateOperatorStatus) {
-		//gBoardLayer.remove(rotateObject);
-		rotateObject.hide();
-	}
-	if(flipOperatorStatus) {
-		//gBoardLayer.remove(flipObject);
-		flipObject.hide();
-	}
-	rotateOperatorStatus = 0;
-	flipOperatorStatus = 0;
-}
 
 //==========================
 // BEGIN for search answer
@@ -2777,15 +2392,6 @@ function hintsButton()
 		//get the last inserted block
 		polyId = getPolyIdFromInsertOrder();	//	es la identificacion del ultimo poligono insertado
 
-		if (DEBUG)
-		{
-			console.log('linea 2223, polyId: ' + polyId);
-			console.log('gPolyGroup[polyId]: ' + gPolyGroup[polyId]);
-			console.log('            result: ' + result);
-			console.log('result.solvedBoard: ' + result.solvedBoard );
-			console.log('	      result.op; ' + result.op );
-		}
-
 		//remove it from gBoardState
 		poly = gPolyGroup[polyId].poly;
 		removeBlock(gBoardState, poly)
@@ -2796,7 +2402,7 @@ function hintsButton()
 	writeMessage("");
 
 	clearFocusPoly(getLastFocusPoly());
-	hideOperatorObject();
+	//	hideOperatorObject();
 
 	//	boton operador
 	//	ocultaBotonOperador();
@@ -3124,7 +2730,7 @@ function resetButton()
 	writeMessage("");
 
 	clearFocusPoly(getLastFocusPoly());
-	hideOperatorObject();
+	//	hideOperatorObject();
 
 	//	boton operador
 	//	ocultaBotonOperador();
@@ -3687,8 +3293,8 @@ function muestraBotonOperador(poly) {
 //--------------------------------------------------
 // Remove botones de giro y volteo del layer
 //--------------------------------------------------
-function ocultaBotonOperador()
-{
+//	function ocultaBotonOperador()
+//	{
 	/*
 	if(rotateOperatorStatus) {
 		//gBoardLayer.remove(rotateObject);
@@ -3702,7 +3308,7 @@ function ocultaBotonOperador()
 
 	}
 	*/
-}
+//	}
 
 
 
@@ -3745,8 +3351,6 @@ function voltearPieza()
 	////gBoardLayer.draw();
 }
 
-//	var rotateObject; //a rotate object, display on the focus polygon
-//	var flipObject;   //a flip object, display on the focus polygon
 
 
 

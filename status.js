@@ -49,7 +49,7 @@ function	HaceStatusLayer()	{
 		y: (gStage.getHeight() * 0.2),
 		text: 'STATUS\nLAYER',
 		fontSize: SCREEN_X/12,			//	130,
-		fontFamily: FONT_NIVEL2,	//	'Calibri',
+		fontFamily: FONT_NIVEL1,	//	'Calibri',
 		fill: '#334D00'
 	});
 

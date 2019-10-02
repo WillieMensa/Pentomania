@@ -1,6 +1,9 @@
 ﻿/*	=============================================================================
 	Pentomino Puzzle
 
+	#### version     = "0.6.8"	- 22/9/2019
+	Completando pantallas ayuda y acerca de
+
 	#### version     = "0.6.70"	- 16/9/2019
 	Depuracion archivo. Eliminar codigo innecesario
 
@@ -58,7 +61,6 @@
 	Separacion de funcionalidades en archivos individuales
 
 	ajustes.js
-	status.js
 
 	include files: polyomino5.js, polySolution.js, animate.js, polyDemo.js
 
@@ -82,7 +84,7 @@
 //=========
 // define
 //=========
-const versionString="0.6.70"			//	lleva el numero de version actual
+const versionString="0.6.8"			//	lleva el numero de version actual
 
 //-------------------------------------
 //	https://www.w3schools.com/colors/colors_picker.asp
@@ -171,7 +173,7 @@ var gInitLayer;				//kinetic layer
 var gHelpLayer;				//kinetic layer
 var gConfigLayer;			//kinetic layer
 var gAboutLayer;			//kinetic layer
-var gStatusLayer;			//kinetic layer
+//	var gStatusLayer;			//kinetic layer
 
 
 var gBlockGroup;		//este array contiene datos de los poliominos / poligonos a tratar (pentominos)
@@ -205,8 +207,8 @@ var gBlockUsed = 0;		//	how many block used
 
 
 const	
-	//	DEBUG = true,
-	DEBUG = false,
+	DEBUG = true,
+	//	DEBUG = false,
 	DEBUG2 = false;
 
 //====================================
@@ -222,7 +224,7 @@ var
 	menuBtn,			//	menu ppal
 	nroProbBtn,		//	aceptar nro problema
 	playBtn,			//	jugar
-	statusBtn,		//	status button
+	//	statusBtn,		//	status button
 	nroProblema,	//	el input
 	//	labelBtn,			//	para hacer fondo del input
 	giraPieza,		//	rotate button
@@ -293,9 +295,9 @@ function init()
 
 
 	//	Preparacion de pantallas
-	HaceHelpLayer();	
-	HaceAboutLayer();
-	HaceStatusLayer();
+	//	HaceHelpLayer();	
+	//	HaceAboutLayer();
+	//	HaceStatusLayer();
 
 	//	document.getElementById('levelButton').options[gLevelId-1].selected  = true;
 	nProblema = getNroProbl();
@@ -320,7 +322,7 @@ function init()
 function HaceBotones() {		//	Preparar los botones
 
 const btnHeight = 0.5 * BLOCK_CELL_SIZE;
-var dist_X = Math.floor(STAGE_X / 6 )
+var dist_X = Math.floor(STAGE_X / 5 )
 
 	//	---------------------------------
 	//	botones de la pantalla inicial
@@ -332,18 +334,15 @@ var dist_X = Math.floor(STAGE_X / 6 )
 	document.body.appendChild(playBtn);
 	playBtn.addEventListener ("click", function() {	playPuzzle(1); });
 	playBtn.style.position	= "absolute";     	
-	//	playBtn.style.left		=	STAGE_OFFSET_X + 1.0 * BLOCK_CELL_SIZE;
 	playBtn.style.left		=	STAGE_OFFSET_X + 1 * dist_X - BLOCK_CELL_SIZE;
-	//	playBtn.style.top			= STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE;	//	0.9 * STAGE_Y;	//	(STAGE_Y - BLOCK_CELL_SIZE);	//	+"px";
 	playBtn.style.top			= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
-	//	playBtn.style.height	= btnHeight;			//	0.6 * BLOCK_CELL_SIZE;
-
+	
 
 	//helpBtn,	// Help button in javascript code
 	helpBtn = document.createElement("button");
 	helpBtn.innerHTML = "Help";
 	document.body.appendChild(helpBtn);               // Append <button> to <body>
-	helpBtn.addEventListener ("click", function() {  alert("pico en helpBtn") } );// 3. Add event handler
+	helpBtn.addEventListener ("click", function() {Help()});
 	helpBtn.style.left			=	"050px";
 	helpBtn.style.position	= "absolute";     
 	//	helpBtn.style.left			=	STAGE_OFFSET_X + 4.0 * BLOCK_CELL_SIZE;
@@ -354,26 +353,23 @@ var dist_X = Math.floor(STAGE_X / 6 )
 	aboutBtn = document.createElement("button");
 	aboutBtn.innerHTML = "About";
 	document.body.appendChild(aboutBtn);               // Append <button> to <body>
-	aboutBtn.addEventListener ("click", function() {  alert("picoen About button") } );// 3. Add event handler
-	//	aboutBtn.style.cssText = "top:" + (250) + "px; left:" + (50) + "px; position: absolute;";// 4. Position in screen
+	aboutBtn.addEventListener ("click", function() {AcercaDe()});
 	aboutBtn.style.position	= "absolute";     
-	//	aboutBtn.style.left			=	STAGE_OFFSET_X + 7.0 * BLOCK_CELL_SIZE;
 	aboutBtn.style.left			=	STAGE_OFFSET_X + 3 * dist_X - BLOCK_CELL_SIZE;
 	aboutBtn.style.top			= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
 	//statusBtn,	// Status button in javascript code
-	statusBtn = document.createElement("button");
-	statusBtn.innerHTML = "Status";
-	document.body.appendChild(statusBtn);
-	statusBtn.addEventListener ("click", function() {  pantallaStatus() } );// 3. Add event handler
-	statusBtn.style.position	= "absolute";     
-	//	statusBtn.style.left			=	STAGE_OFFSET_X + 10.0 * BLOCK_CELL_SIZE;
-	statusBtn.style.left			=	STAGE_OFFSET_X + 4 * dist_X - BLOCK_CELL_SIZE;
-	statusBtn.style.top				= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
+	//	statusBtn = document.createElement("button");
+	//	statusBtn.innerHTML = "Status";
+	//	document.body.appendChild(statusBtn);
+	//	statusBtn.addEventListener ("click", function() {  pantallaStatus() } );// 3. Add event handler
+	//	statusBtn.style.position	= "absolute";     
+	//	//	statusBtn.style.left			=	STAGE_OFFSET_X + 10.0 * BLOCK_CELL_SIZE;
+	//	statusBtn.style.left			=	STAGE_OFFSET_X + 4 * dist_X - BLOCK_CELL_SIZE;
+	//	statusBtn.style.top				= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
-	//configBtn	// Status button in javascript code
 	configBtn = document.createElement("button");
 	configBtn.innerHTML = "Ajustes";
 	document.body.appendChild(configBtn);
@@ -382,7 +378,7 @@ var dist_X = Math.floor(STAGE_X / 6 )
 	configBtn.style.left = "50px";	
 	configBtn.style.position = "absolute";
 	//	configBtn.style.left		=	STAGE_OFFSET_X + 13.0 * BLOCK_CELL_SIZE;
-	configBtn.style.left			=	STAGE_OFFSET_X + 5 * dist_X - BLOCK_CELL_SIZE;
+	configBtn.style.left			=	STAGE_OFFSET_X + 4 * dist_X - BLOCK_CELL_SIZE;
 	configBtn.style.top 		= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
@@ -396,7 +392,7 @@ var dist_X = Math.floor(STAGE_X / 6 )
 	document.body.appendChild(menuBtn);
 	menuBtn.addEventListener ("click", function() {  MenuInicial() } );// 3. Add event handler
 	menuBtn.style.position = "absolute";
-	menuBtn.style.left	=	STAGE_OFFSET_X + 5 * dist_X - BLOCK_CELL_SIZE;
+	menuBtn.style.left	=	STAGE_OFFSET_X + 4 * dist_X - BLOCK_CELL_SIZE;
 	menuBtn.style.top		= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 
 
@@ -490,18 +486,18 @@ function MenuInicial() {
 	hiddenAllButton();
 	gBoardLayer.destroy();
 	gBackgroundLayer.destroy();
+	gHelpLayer.destroy();
 	//	gMessageLayer.destroy();
-	gStatusLayer.destroy();
+	gAboutLayer.destroy();
 
 	
 	HaceInitLayer();
 
 
-
 	aboutBtn.style.visibility='visible';
 	helpBtn.style.visibility='visible';			//	help button
 	configBtn.style.visibility='visible';		//	config button
-	statusBtn.style.visibility='visible';		//	status button
+	//	statusBtn.style.visibility='visible';		//	status button
 
 	playBtn.style.visibility='visible';			//	jugar
 	menuBtn.style.visibility='hidden';			//	menu ppal
@@ -536,9 +532,9 @@ function playPuzzle()
 	aboutBtn.style.visibility='hidden';
 	configBtn.style.visibility='hidden';		//	config button
 	helpBtn.style.visibility='hidden';			//	help button
-	statusBtn.style.visibility='hidden';		//	status button
+	//	statusBtn.style.visibility='hidden';		//	status button
 
-	if (DEBUG) { DibujaGrilla()	}
+	gInitLayer.destroy();
 
 	hintBtn.style.visibility='visible';			//	hint button
 	menuBtn.style.visibility='visible';			//	menu ppal
@@ -733,7 +729,7 @@ function createStageLayer()
 	gHelpLayer		= new Kinetic.Layer();
 	gConfigLayer	= new Kinetic.Layer();
 	gAboutLayer		= new Kinetic.Layer();
-	gStatusLayer	= new Kinetic.Layer();
+	//	gStatusLayer	= new Kinetic.Layer();
 
 	if (DEBUG)
 	{
@@ -773,7 +769,7 @@ function clearStageLayer()
 	//	gConfigLayer.removeChildren();
 	gConfigLayer.remove();
 	gAboutLayer.removeChildren();
-	gStatusLayer.remove();
+	//	gStatusLayer.remove();
 
 }
 
@@ -783,15 +779,11 @@ function clearStageLayer()
 //----------------------------------------------
 
 
-function	HaceHelpLayer()  	{
-};
-
-
 
 
 //--------------------------------------------------------------------
-function	HaceAboutLayer() 	{
-};
+//	function	HaceAboutLayer() 	{
+//	};
 
 
 
@@ -1098,16 +1090,15 @@ function addBackgroundLayer()
 	});
 
 
-	var background = new Kinetic.Rect({
-		x: 0,
-		y: 0,
-		width: STAGE_X,
-		height: STAGE_Y,
-		stroke: '#ddeeff',
-		strokeWidth: 2,
-		fill: BACKGROUND_COLOR
-
-	});
+	//	var background = new Kinetic.Rect({
+	//		x: 0,
+	//		y: 0,
+	//		width: STAGE_X,
+	//		height: STAGE_Y,
+	//		stroke: '#ddeeff',
+	//		strokeWidth: 2,
+	//		fill: BACKGROUND_COLOR
+	//	});
 
 	if (DEBUG) {console.log('boardStartX, boardStartY: ' + boardStartX + ', ' + boardStartY )}
 
@@ -1160,7 +1151,7 @@ function addBackgroundLayer()
 	});
 
 
-	gBackgroundLayer.add(background);
+	//	gBackgroundLayer.add(background);
 	gBackgroundLayer.add(titleText1);
 	gBackgroundLayer.add(boardBackground);
 	gBackgroundLayer.add(borderUp);
@@ -2524,7 +2515,7 @@ function hiddenAllButton()
 	hintBtn.style.visibility='hidden';
 	aboutBtn.style.visibility='hidden';
 	playBtn.style.visibility='hidden';
-	statusBtn.style.visibility='hidden';
+	//	statusBtn.style.visibility='hidden';
 	configBtn.style.visibility='hidden';
 	nroProbBtn.style.visibility='hidden';
 	nroProblema.style.visibility='hidden';
@@ -2833,7 +2824,6 @@ function nextButton()
 		fontSize: textHigh,
 		//fontFamily: "sans-serif",
 		//fontStyle:"bold",
-
 		align: 'center',
 		width: textAllWidth,
 		padding: padSize,
@@ -3290,27 +3280,6 @@ function muestraBotonOperador(poly) {
 };
 
 
-//--------------------------------------------------
-// Remove botones de giro y volteo del layer
-//--------------------------------------------------
-//	function ocultaBotonOperador()
-//	{
-	/*
-	if(rotateOperatorStatus) {
-		//gBoardLayer.remove(rotateObject);
-		document.getElementById('giraPieza').disabled=true;
-		document.getElementById('giraPieza').style.visibility='hidden';
-	}
-	if(flipOperatorStatus) {
-		//gBoardLayer.remove(flipObject);
-		document.getElementById('volteaPieza').disabled=true;
-		document.getElementById('volteaPieza').style.visibility='hidden';
-
-	}
-	*/
-//	}
-
-
 
 //---------------------------------------
 //	con el boton
@@ -3500,18 +3469,6 @@ function HaceInitLayer()  {//pantalla de inicio
 
 
 	selectIdioma();
-
-	if (DEBUG)	{
-		var debugTxt = new Kinetic.Text({
-			x: gStage.getWidth() *0.24,
-			y: (gStage.getHeight() * 0.8),
-			text: 'SCREEN_X, SCREEN_Y: ' + SCREEN_X + ', ' + SCREEN_Y+ ' STAGE_X, STAGE_Y: ' + STAGE_X + ', ' + STAGE_Y, //	ancho y alto de pantalla en px
-			fontSize: 24,//130,
-			fontFamily: FONT_NIVEL3,//'Calibri',
-			fill: '#aaa'
-		});
-		gInitLayer.add(debugTxt);
-	}
 
 	gStage.add(gInitLayer);
 

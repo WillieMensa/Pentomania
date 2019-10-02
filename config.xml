@@ -2,7 +2,7 @@
 <widget 
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "ar.com.ingverger.pentomania"
-    version     = "0.6.70" >
+    version     = "0.6.8" >
 
 	<name>Pentomania</name>
 
@@ -18,11 +18,11 @@
 		En caso de tener dificultades para encontrar la solución el jugador puede solicitar ayuda. Esta consiste en la colocacion de una pieza por parte de la aplicación y le restará un punto al finalizar el problema.
 	</description>
 
-	<author href="http://www.ingverger.com.ar/pentominos.php" email="ingverger@gmail.com">
+	<author href="http://www.ingverger.com.ar/pentomania" email="ingverger@gmail.com">
 		Guillermo Verger
 	</author>
 
-	<preference name="android-targetSdkVersion"  value="28" /> 
+	<preference name="android-targetSdkVersion" value="28" />
     <preference name="orientation"	value="landscape" />        <!-- all: default means both landscape and portrait are enabled -->
 
 	<content src="index.html" />
@@ -34,6 +34,6 @@
 	</platform>
 	<platform name="winphone">
 	</platform>
-	<icon src="icon.png" />
+	<icon src="favicon.ico" />
 
 </widget>

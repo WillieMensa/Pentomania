@@ -1,8 +1,8 @@
 ﻿/*	=============================================================================
 	Pentomino Puzzle
 
-	#### version     = "0.7.0"	- 4/10/2019
-	Multilanguage
+	#### version     = "0.7.0 / 0.7.1"	- 4/10/2019
+	Multilanguage y correcciones
 
 
 	#### version     = "0.6.8"	- 22/9/2019
@@ -88,7 +88,7 @@
 //=========
 // define
 //=========
-const versionString="0.7.0"			//	lleva el numero de version actual
+const versionString="0.7.1"			//	lleva el numero de version actual
 
 //-------------------------------------
 //	https://www.w3schools.com/colors/colors_picker.asp
@@ -770,7 +770,7 @@ function createPuzzle(newPuzzle, activePoly)
 
 	//	if(activePoly) activePolygon();		//	original pero siempre verdadero
 	activePolygon();
-
+	//	writeFinishMsg(); //for test only
 }
 
 
@@ -2692,7 +2692,9 @@ var boardSizeInfo = [
 function writeFinishMsg()
 {
 	var textHigh=26;
-	var textWidth = 14;
+	var textWidth = 12;																//	14;
+	var finishText = dict.txtFin;
+
 	var scaleX = Math.floor((STAGE_X-11) / (2 * (finishText.length * textWidth)));
 	var scaleY = Math.floor((STAGE_Y/3)/ (2 * textHigh)) ;
 
@@ -2700,7 +2702,7 @@ function writeFinishMsg()
 
 		x: 8 * BLOCK_CELL_SIZE,		// - finishText.length * textWidth/2,
 		y: 0.1 * STAGE_Y - textHigh/2,
-		text:  finishText,
+		text: finishText,
 		fontSize: textHigh,
 		fontStyle:"bold",
 		fill: TEXT_FINISH_COLOR,
@@ -2732,9 +2734,11 @@ function nextButton()
 	var textWidth = 16;
 	var padSize =8;
 
+	var nextText = 'Próximo';
+
 	var textAllWidth = nextText.length * textWidth+ padSize*2;
 	var textAllHigh  = textHigh+padSize*2;
-	var scaleX = Math.floor(STAGE_X/textAllWidth/4);
+	var scaleX = Math.floor(STAGE_X/textAllWidth/3);
 	var scaleY = Math.floor(STAGE_Y/textHigh/8) ;
 
 	//	var centerX = STAGE_X * 3/4;

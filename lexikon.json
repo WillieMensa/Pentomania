@@ -1,6 +1,13 @@
 // ----------------------------------------------------------------------------
 //	lexikon.json
 //	diccionario para version multilingual
+
+//	var levelText = "Nivel";
+//	var noSolutionText = " Sin solución ";
+//	var nextText = "NEXT";
+//	var finishText = "Congrats!";
+//	var checkSolutionShift = 90;
+
 // ----------------------------------------------------------------------------
 
 const dictSp = {
@@ -13,7 +20,7 @@ const dictSp = {
 	txtConfig: "Ajustes",
 	txtDificu: "Dificultad",
 	txtEspanol: "Espanol",
-	txtFin: "Bien resuelto!\nFelicitaciones! ",
+	txtFin: "Bien resuelto!",
 	txtGirar: 'Girar',
 	txtHint: 'Indicio',
 	txtIdioma: "Idioma",
@@ -21,13 +28,13 @@ const dictSp = {
 	txtJugar: "Jugar",
 	txtMenu: "Menu",
 	txtNivel: "Nivel",
-	txtNoSol: "Sin solución",
+	txtNoSol: "Sin solucion",
 	txtOtro: "OTRO",
 	txtProblema: 'Problema ',
 	txtProx: 'Siguiente',
 	txtTiempo: "Tiempo: ",
 	txtTituloAyuda: "AYUDA DE PENTOMANIA",
-	txtVerifica: 'Verifica solucion',
+	txtVerifica: '',								//	'Verifica solucion',
 	txtVoltear: "Voltear",
 	txtVolver: "Volver",
 	txtDescAcerca:
@@ -60,7 +67,7 @@ const dictEn = {
 	txtConfig: "Settings",
 	txtDificu: "Difficulty",
 	txtEspanol: "Spanish",
-	txtFin: "Congratulation",
+	txtFin: "Congratulations!",
 	txtGirar: 'Rotate',
 	txtHint: 'Hint',
 	txtIdioma: "Language",
@@ -74,7 +81,7 @@ const dictEn = {
 	txtProx: "Next",
 	txtTiempo: "Time: ",
 	txtTituloAyuda: "PENTOMANIA HELP",
-	txtVerifica: 'Verify',
+	txtVerifica: '',												//	'Verify',
 	txtVoltear: "Flip",
 	txtVolver: "Back",
 	txtDescAcerca:

@@ -1,6 +1,10 @@
 ﻿/*	=============================================================================
 	Pentomino Puzzle
 
+	#### version     = "0.7.0"	- 4/10/2019
+	Multilanguage
+
+
 	#### version     = "0.6.8"	- 22/9/2019
 	Completando pantallas ayuda y acerca de
 
@@ -84,7 +88,7 @@
 //=========
 // define
 //=========
-const versionString="0.6.8"			//	lleva el numero de version actual
+const versionString="0.7.0"			//	lleva el numero de version actual
 
 //-------------------------------------
 //	https://www.w3schools.com/colors/colors_picker.asp
@@ -187,7 +191,7 @@ var	wPolyTetrom;			//	datos para colocacion en pantalla
 var	nTetromId	= 3;	//	identificador del tetromino fijo a colocar en el tablero
 
 //	var wtetromino;		//	datos de tetromino a colocar en posición fija
-var wTetromPos = {x:2,y:2};	//	posicion del tetromino fijo
+var wTetromPos = {x:0,y:0};	//	posicion del tetromino fijo
 var gCeldasOcupadas;
 
 //	variables globales
@@ -207,8 +211,8 @@ var gBlockUsed = 0;		//	how many block used
 
 
 const	
-	DEBUG = true,
-	//	DEBUG = false,
+	//	DEBUG = true,
+	DEBUG = false,
 	DEBUG2 = false;
 
 //====================================
@@ -224,12 +228,10 @@ var
 	menuBtn,			//	menu ppal
 	nroProbBtn,		//	aceptar nro problema
 	playBtn,			//	jugar
-	//	statusBtn,		//	status button
 	nroProblema,	//	el input
-	//	labelBtn,			//	para hacer fondo del input
 	giraPieza,		//	rotate button
 	volteaPieza,
-	txtVerifica,	//	texto indicar verificacion
+	//	txtVerifica,	//	texto indicar verificacion
 	fakeBtn				//	este boton no existe
 
 
@@ -259,7 +261,7 @@ function init()
 	//	document.getElementById('checkButton').checked=false;
 	//	document.getElementById('levelButton').options[gLevelId-1].selected  = true;
 
-	initLanguage();					//	adaptación a diferentes idiomas
+	//	initLanguage();					//	adaptación a diferentes idiomas
 	initScreenVariable();
 	initScreenPosColor();	
 	
@@ -288,7 +290,7 @@ function init()
 	createStageLayer();
 
 
-	initLanguage();					//	adaptación a diferentes idiomas
+	initLanguage();					//	prepara el diccionario para textos
 
 	//	prepara los botones de la aplicacion
 	HaceBotones()
@@ -307,7 +309,7 @@ function init()
 	if (DEBUG) { DibujaGrilla()	}
 
 	//debug
-	if (DEBUG) {
+	if (DEBUG2) {
 		console.log("cell " +BLOCK_CELL_SIZE + " X,Y " + STAGE_X + "," + STAGE_Y + " offX: " + STAGE_OFFSET_X + " offY: " + STAGE_OFFSET_Y);
 	}
 	MenuInicial();
@@ -330,17 +332,18 @@ var dist_X = Math.floor(STAGE_X / 5 )
 	//	---------------------------------
 	//playBtn	; button in javascript code
 	playBtn = document.createElement("button");
-	playBtn.innerHTML = "Jugar";
+	playBtn.innerHTML = dict.txtJugar;
 	document.body.appendChild(playBtn);
-	playBtn.addEventListener ("click", function() {	playPuzzle(1); });
+	playBtn.addEventListener ("click", function() {	playPuzzle(); });
 	playBtn.style.position	= "absolute";     	
 	playBtn.style.left		=	STAGE_OFFSET_X + 1 * dist_X - BLOCK_CELL_SIZE;
 	playBtn.style.top			= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
+	playBtn.style.visibility='hidden';
 	
 
 	//helpBtn,	// Help button in javascript code
 	helpBtn = document.createElement("button");
-	helpBtn.innerHTML = "Help";
+	helpBtn.innerHTML = dict.txtAyuda;
 	document.body.appendChild(helpBtn);               // Append <button> to <body>
 	helpBtn.addEventListener ("click", function() {Help()});
 	helpBtn.style.left			=	"050px";
@@ -348,30 +351,21 @@ var dist_X = Math.floor(STAGE_X / 5 )
 	//	helpBtn.style.left			=	STAGE_OFFSET_X + 4.0 * BLOCK_CELL_SIZE;
 	helpBtn.style.left			=	STAGE_OFFSET_X + 2 * dist_X - BLOCK_CELL_SIZE;
 	helpBtn.style.top				= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
+	helpBtn.style.visibility='hidden';
 
 	//aboutBtn	// About button in javascript code
 	aboutBtn = document.createElement("button");
-	aboutBtn.innerHTML = "About";
+	aboutBtn.innerHTML = dict.txtAcerca;
 	document.body.appendChild(aboutBtn);               // Append <button> to <body>
 	aboutBtn.addEventListener ("click", function() {AcercaDe()});
 	aboutBtn.style.position	= "absolute";     
 	aboutBtn.style.left			=	STAGE_OFFSET_X + 3 * dist_X - BLOCK_CELL_SIZE;
 	aboutBtn.style.top			= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
-
-
-	//statusBtn,	// Status button in javascript code
-	//	statusBtn = document.createElement("button");
-	//	statusBtn.innerHTML = "Status";
-	//	document.body.appendChild(statusBtn);
-	//	statusBtn.addEventListener ("click", function() {  pantallaStatus() } );// 3. Add event handler
-	//	statusBtn.style.position	= "absolute";     
-	//	//	statusBtn.style.left			=	STAGE_OFFSET_X + 10.0 * BLOCK_CELL_SIZE;
-	//	statusBtn.style.left			=	STAGE_OFFSET_X + 4 * dist_X - BLOCK_CELL_SIZE;
-	//	statusBtn.style.top				= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
+	aboutBtn.style.visibility='hidden';
 
 
 	configBtn = document.createElement("button");
-	configBtn.innerHTML = "Ajustes";
+	configBtn.innerHTML = dict.txtConfig;
 	document.body.appendChild(configBtn);
 	configBtn.addEventListener ("click", function() {  haceAjustes() } );// 3. Add event handler
 	//	configBtn.style.cssText = "top:" + (450) + "px; left:" + (050) + "px; position: absolute;";// 4. Position in screen
@@ -380,6 +374,7 @@ var dist_X = Math.floor(STAGE_X / 5 )
 	//	configBtn.style.left		=	STAGE_OFFSET_X + 13.0 * BLOCK_CELL_SIZE;
 	configBtn.style.left			=	STAGE_OFFSET_X + 4 * dist_X - BLOCK_CELL_SIZE;
 	configBtn.style.top 		= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
+	configBtn.style.visibility='hidden';
 
 
 	
@@ -388,49 +383,48 @@ var dist_X = Math.floor(STAGE_X / 5 )
 	//	---------------------------------
 	//menuBtn	//	boton menu inicio in javascript code
 	menuBtn = document.createElement("button");
-	menuBtn.innerHTML = "Volver";
+	menuBtn.innerHTML = dict.txtVolver;
 	document.body.appendChild(menuBtn);
 	menuBtn.addEventListener ("click", function() {  MenuInicial() } );// 3. Add event handler
 	menuBtn.style.position = "absolute";
 	menuBtn.style.left	=	STAGE_OFFSET_X + 4 * dist_X - BLOCK_CELL_SIZE;
 	menuBtn.style.top		= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
+	menuBtn.style.visibility='hidden';
 
 
 	//	giraPieza: boton para rotar piezzas
 	giraPieza = document.createElement("button");
-	//	giraPieza.innerHTML = "&#X21BB;";
-	giraPieza.innerHTML = "Girar";
+	giraPieza.innerHTML = dict.txtGirar;
 	document.body.appendChild(giraPieza);
 	giraPieza.addEventListener ("click", function() { girarPieza() } );// 3. Add event handler
 	giraPieza.style.position = "absolute";
 	giraPieza.style.left	=	STAGE_OFFSET_X + 1.0 * BLOCK_CELL_SIZE;
 	giraPieza.style.top		= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
+	giraPieza.style.visibility='hidden';
 
 
 	//	volteaPieza: boton para rotar piezzas
 	volteaPieza = document.createElement("button");
-	//	volteaPieza.innerHTML = "&#X2194;";		//	"<--->";
-	volteaPieza.innerHTML = "Voltear";
+	volteaPieza.innerHTML = dict.txtVoltear;
 	document.body.appendChild(volteaPieza);
-	volteaPieza.addEventListener ("click", function() { voltearPieza() } );// 3. Add event handler
-	//	volteaPieza.style.cssText = "top:" + (SCREEN_Y-080) + "px; left:" + (350) + "px; position: absolute; font:" + (28) + "px sriracharegular bold";
+	volteaPieza.addEventListener ("click", function() { voltearPieza() } );
 	volteaPieza.style.position = "absolute";
 	volteaPieza.style.left	=	STAGE_OFFSET_X + 4.0 * BLOCK_CELL_SIZE;
 	volteaPieza.style.top		= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
-	//	volteaPieza.style.font = "40px Arial Black";
-	//	volteaPieza.style.line-height= "6px";
+	volteaPieza.style.visibility='hidden';
 
 
 
 	//	hintBtn: boton ayuditas in javascript code
 	hintBtn = document.createElement("button");
-	hintBtn.innerHTML = "Ayudita";
+	hintBtn.innerHTML = dict.txtHint;
 	document.body.appendChild(hintBtn);
 	hintBtn.addEventListener ("click", function() {  hintsButton() } );
 	//	hintBtn.style.cssText = "top:" + (SCREEN_Y-80) + "px; left:" + (500) + "px; position: absolute;";
 	hintBtn.style.position = "absolute";
 	hintBtn.style.left			=	STAGE_OFFSET_X + 7.0 * BLOCK_CELL_SIZE;
 	hintBtn.style.top				= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
+	hintBtn.style.visibility='hidden';
 
 
 	checkBtn = document.createElement("INPUT");
@@ -442,17 +436,19 @@ var dist_X = Math.floor(STAGE_X / 5 )
 	checkBtn.style.position = "absolute";
 	checkBtn.style.font = "16px";
 	checkBtn.style.width = BLOCK_CELL_SIZE;
+	checkBtn.style.visibility='hidden';
 
 
 
 	//	nroProbBtn boton aceptar numero de problema
 	nroProbBtn = document.createElement("button");
-	nroProbBtn.innerHTML = "Aceptar";
+	nroProbBtn.innerHTML = dict.txtAceptar;
 	document.body.appendChild(nroProbBtn);
 	nroProbBtn.addEventListener ("click", function() {  setNroProbl() } );// 3. Add event handler
 	nroProbBtn.style.left = STAGE_OFFSET_X + 4 * BLOCK_CELL_SIZE;
 	nroProbBtn.style.top	= STAGE_OFFSET_Y + STAGE_Y - BLOCK_CELL_SIZE;	
 	nroProbBtn.style.position = "absolute";
+	nroProbBtn.style.visibility='hidden';
 
 
 
@@ -470,6 +466,7 @@ var dist_X = Math.floor(STAGE_X / 5 )
 	nroProblema.style.font = FONT_NIVEL3;			//	"16px sriracharegular bold";
 	nroProblema.style.textAlign = 'right';
 	nroProblema.style.background = '#99cc00';
+	nroProblema.style.visibility='hidden';
 
 }
 
@@ -493,6 +490,7 @@ function MenuInicial() {
 	
 	HaceInitLayer();
 
+	writeMessage("");
 
 	aboutBtn.style.visibility='visible';
 	helpBtn.style.visibility='visible';			//	help button
@@ -532,7 +530,10 @@ function playPuzzle()
 	aboutBtn.style.visibility='hidden';
 	configBtn.style.visibility='hidden';		//	config button
 	helpBtn.style.visibility='hidden';			//	help button
-	//	statusBtn.style.visibility='hidden';		//	status button
+
+	document.getElementById('espButt').style.visibility='hidden';
+	document.getElementById('engButt').style.visibility='hidden';
+	document.getElementById('deuButt').style.visibility='hidden';
 
 	gInitLayer.destroy();
 
@@ -541,7 +542,6 @@ function playPuzzle()
 
 	giraPieza.style.visibility='visible';
 	volteaPieza.style.visibility='visible';
-
 
 	//checkbox
 	checkBtn.style.visibility='visible';
@@ -557,47 +557,6 @@ function initBoardSize(boardSize, level)
 
 }
 
-
-//-------------------------------------------------------------------
-// initial button language to traditional chinese if system support
-//-------------------------------------------------------------------
-var levelText = "Nivel";
-var noSolutionText = " Sin solución ";
-var nextText = "NEXT";
-var finishText = "Congrats!";
-var checkSolutionShift = 90;
-
-function initLanguage()		//	para adaptar a diferentes idiomas
-{
-	var sysLang = getSystemLanguage();
-
-	if(sysLang == "en" || sysLang == "en") { //	ingles
-		noSolutionText = "No solution ";
-		nextText = "NEXT";
-		finishText = "Congrats!";
-		levelText = "Level";
-
-		hintBtn.value = "Hint";
-		//	document.getElementById('resetButton').value = "Reset";
-		document.getElementById('startButton').value = "Start";
-
-		checkSolutionShift = 90;
-		//	document.getElementById('checkboxtext').innerHTML = "CHECK";
-
-	} else if(sysLang == "de" || sysLang == "de") { //	aleman
-		noSolutionText = "keine losung ";
-		nextText = "Nächste";
-		finishText = "Glückwunsch!";
-		levelText = "Niveau";		
-		hintBtn.value = "Hilfe";
-		//	document.getElementById('resetButton').value = "Zurücksetzen";
-		document.getElementById('startButton').value = "Beginnen";
-
-		checkSolutionShift = 90;
-		//	document.getElementById('checkboxtext').innerHTML = "Überprüfen";
-
-	}
-}
 
 
 
@@ -1063,7 +1022,7 @@ function addBackgroundLayer()
 	var titleText1 = new Kinetic.Text({
 		x: BLOCK_CELL_SIZE,			//textOffset,
 		y: textOffset,
-		text: 'Problem ' + nProblema,
+		text: dict.txtProblema + nProblema,
 		fill: TITLE_COLOR,
 		fontSize: titleFontSize,
 		//fontFamily: "Calibri",
@@ -1076,12 +1035,10 @@ function addBackgroundLayer()
 
 
 	var txtVerifica = new Kinetic.Text({
-		//	x: STAGE_OFFSET_X + 11 * BLOCK_CELL_SIZE,	//				11 * BLOCK_CELL_SIZE,
-		x: 11 * BLOCK_CELL_SIZE,	//				11 * BLOCK_CELL_SIZE,
-		//	y: textOffset,		//	(STAGE_OFFSET_Y + 9 * BLOCK_CELL_SIZE),
+		x: 11 * BLOCK_CELL_SIZE,
 		y: STAGE_Y - BLOCK_CELL_SIZE,
 		id: 'verifica',
-		text: 'Verifica solucion',
+		text: dict.txtVerifica,		//	'Verifica solucion',
 		fontSize: titleFontSize,
 		fontFamily: 'sriracharegular',
 		fontStyle:"bold",
@@ -2294,7 +2251,7 @@ function check()
 	var result = findAnswer(gBoardState, 1);
 
 	if(result.totalAnswer <= 0) {
-		writeMessage(noSolutionText);
+		writeMessage(dict.txtNoSol);
 		//console.log("No solution, " + "(" + result.elapsedTime + ")");
 	} else {
 		writeMessage("");
@@ -2474,39 +2431,13 @@ function enableAllButton()
 
 }
 
-//--------------------
-// visible all button
-//--------------------
-function visibleAllButton()
-{
-	//	no estoy usando esta funcion!!!
-	//	document.getElementById('levelButton').style.visibility='visible';
 
-	hintBtn.style.visibility='visible';
-	//	document.getElementById('hintsButton').style.visibility='visible';
-	//	document.getElementById('newButton').style.visibility='visible';
-	//	document.getElementById('resetButton').style.visibility='visible';
-	document.getElementById('initButton').style.visibility='visible';
-	giraPieza.style.visibility='visible';
-	volteaPieza.style.visibility='visible';
-
-
-	//checkbox
-	//	document.getElementById('checkButton').style.visibility='visible';
-	//	document.getElementById('checkboxtext').style.visibility='visible';
-	checkBtn.style.visibility='visible';
-	//	txtVerifica.style.visibility='visible';
-
-}
 
 //--------------------
 // hidden all button
 //--------------------
 function hiddenAllButton()
 {
-	//	document.getElementById('nroProblema').style.visibility='hidden';
-	//	document.getElementById('ProblemSelect').style.visibility='hidden';
-
 	//	botones para giro y volteo
 	giraPieza.style.visibility='hidden';
 	volteaPieza.style.visibility='hidden';
@@ -2515,17 +2446,12 @@ function hiddenAllButton()
 	hintBtn.style.visibility='hidden';
 	aboutBtn.style.visibility='hidden';
 	playBtn.style.visibility='hidden';
-	//	statusBtn.style.visibility='hidden';
 	configBtn.style.visibility='hidden';
 	nroProbBtn.style.visibility='hidden';
 	nroProblema.style.visibility='hidden';
 	//	labelBtn.style.visibility='hidden';
 	checkBtn.style.visibility='hidden';
 	//	txtVerifica.style.visibility='hidden';
-
-	//checkbox
-	//	document.getElementById('checkButton').style.visibility='hidden';
-	//	document.getElementById('checkboxtext').style.visibility='hidden';
 	
 }
 
@@ -3010,14 +2936,7 @@ function clearStorage(key)
 	}
 }
 
-//======================
-// get system language
-//======================
-function getSystemLanguage()
-{
-	var lang = window.navigator.userLanguage || window.navigator.language;
-	return lang.toLowerCase();
-}
+
 
 //===============================================
 // Text message to screen (for debug only)
@@ -3226,14 +3145,14 @@ function CalcCeldasOcupadas()		//	arma un vector con los datos de las celdas ocu
 
 	if (DEBUG2)
 	{
-		console.log('linea 3025, wTetromPos: ' + wTetromPos );
-		console.log('linea 3026, wTetromGroup[nTetromId].blockStyle ' + wTetromGroup[nTetromId].blockStyle );
-		console.log('linea 3027, wTetromGroup[nTetromId].blockStyle[0] ' + wTetromGroup[nTetromId].blockStyle[0] );
-		console.log('linea 3027, wTetromGroup[nTetromId].blockStyle[0][0] ' + wTetromGroup[nTetromId].blockStyle[0][0] );
-		console.log('linea 3027, wTetromGroup[nTetromId].blockStyle[0][0].x ' + wTetromGroup[nTetromId].blockStyle[0][0].x );
-		console.log('linea 3029, wTetromPos[0].x ' + wTetromPos.x );
-		console.log('linea 3030, wTetromGroup[nTetromId].blockStyle[0][0].y ' + wTetromGroup[nTetromId].blockStyle[0][0].y );
-		console.log('linea 3031, wTetromPos[0].y ' + wTetromPos.y );
+		console.log(' wTetromPos: ' + wTetromPos );
+		console.log(' wTetromGroup[nTetromId].blockStyle ' + wTetromGroup[nTetromId].blockStyle );
+		console.log(' wTetromGroup[nTetromId].blockStyle[0] ' + wTetromGroup[nTetromId].blockStyle[0] );
+		console.log(' wTetromGroup[nTetromId].blockStyle[0][0] ' + wTetromGroup[nTetromId].blockStyle[0][0] );
+		console.log(' wTetromGroup[nTetromId].blockStyle[0][0].x ' + wTetromGroup[nTetromId].blockStyle[0][0].x );
+		console.log(' wTetromPos[0].x ' + wTetromPos.x );
+		console.log(' wTetromGroup[nTetromId].blockStyle[0][0].y ' + wTetromGroup[nTetromId].blockStyle[0][0].y );
+		console.log(' wTetromPos[0].y ' + wTetromPos.y );
 
 	}
 
@@ -3369,61 +3288,6 @@ function levelButton(id)
 }
 
 
-//---------------------------------------
-//	banderitas seleccion idioma
-//---------------------------------------
-function selectIdioma() {
-
-const 
-	flagWidth	= 1.5 * BLOCK_CELL_SIZE,
-	flagHeight= 0.94 * BLOCK_CELL_SIZE;		//	60
-
-//	idioma ingles
-var imgEng = new Image();
-imgEng.onload = function() {
-	var english = new Kinetic.Image({
-		x: STAGE_X - 6.0 * BLOCK_CELL_SIZE,
-		y: 0.3 * BLOCK_CELL_SIZE,
-		image: imgEng,
-		width:	flagWidth,			//	100,
-		height: flagHeight			//	60
-	});
-	gInitLayer.add(english);			// add the shape to the gInitLayer        
-	gStage.add(gInitLayer);			// add the layer to the stage
-};
-imgEng.src = 'images/ingles.jpg';
-
-//	idioma español
-var imgEsp = new Image();
-imgEsp.onload = function() {
-	var espa = new Kinetic.Image({
-		x: STAGE_X - 4.2 * BLOCK_CELL_SIZE,
-		y: 0.3 * BLOCK_CELL_SIZE,
-		image: imgEsp,
-		width:	flagWidth,			//	100,
-		height: flagHeight			//	60
-	});
-	gInitLayer.add(espa);			// add the shape to the gInitLayer        
-	//	gStage.add(gInitLayer);			// add the layer to the stage
-};
-imgEsp.src = 'images/espanol.jpg';
-
-//	idioma aleman
-var imgDeu = new Image();
-imgDeu.onload = function() {
-	var aleman = new Kinetic.Image({
-		x: STAGE_X - 2.4 * BLOCK_CELL_SIZE,
-		y: 0.3 * BLOCK_CELL_SIZE,
-		image: imgDeu,
-		width:	flagWidth,			//	100,
-		height: flagHeight			//	60
-	});
-	gInitLayer.add(aleman);			// add the shape to the gInitLayer        
-	gStage.add(gInitLayer);			// add the layer to the stage
-};
-imgDeu.src = 'images/aleman.jpg';
-
-}
 
 
 
@@ -3468,7 +3332,8 @@ function HaceInitLayer()  {//pantalla de inicio
 	gInitLayer.add(versionText);
 
 
-	selectIdioma();
+	languageButtons();
+	//	initLanguage();		//		selectIdioma();
 
 	gStage.add(gInitLayer);
 

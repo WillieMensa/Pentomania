@@ -10,9 +10,9 @@ function HelpLayer(){
 	//	if (DEBUG){console.log(' en HaceConfigLayer() ');}
 
 	var titleText = new Kinetic.Text({
-		x: (gStage.getWidth() * 0.5),
+		x: 2 * BLOCK_CELL_SIZE,
 		y: (gStage.getHeight() * 0.2),
-		text: 'AYUDA DE PENTOMANIA',
+		text: dict.txtTituloAyuda,
 		fontSize: 1.0 * BLOCK_CELL_SIZE,			//	130,
 		fontFamily: FONT_NIVEL1,	//	'Calibri',
 		fill: TITLE_COLOR,
@@ -21,26 +21,11 @@ function HelpLayer(){
 		shadowOffset: [6,6],			//	2, 2],
 		shadowOpacity:0.7
 	});
-	titleText.setOffset({
-		x: titleText.getWidth() / 2
-	});
-
-
 
 	var simpleText = new Kinetic.Text({
-		x: (gStage.getWidth() * 0.2),
+		x: 2 * BLOCK_CELL_SIZE,
 		y: (gStage.getHeight() * 0.4),
-		text: 
-			'PENTOMANIA is a puzzle (rompecabezas) where you have to \n' + 
-			'fit all twelve pentomino pieces in the given space.\n' +
-			'There is a square 8 x 8 grid. That is 64 little squares.\n' +
-			'You star with a piece that ocuppies 4 little squares already \n' +
-			'placed. This piece is called tetromino.\n' +
-			'Then you have 12 pieces that ocuppies 5 little square each. \n' +
-			'These ones are called "pentominoes". Hence the name of the \n' +
-			'game. You must cover the 60 uncovered little squares of the \n' +
-			'grid with the 12 pentominoes.\n' +
-			'Pieces may be rotated and flipped but not overlapped',
+		text: dict.txtDescAyuda,
 		fontSize: 0.5 * BLOCK_CELL_SIZE,			//	130,
 		fontFamily: FONT_NIVEL3,	//	'Calibri',
 		align: 'left',
@@ -63,21 +48,23 @@ function HelpLayer(){
 
 function Help() {	
 
-console.log('--------- Ayuda ------------');
+	console.log('--------- Ayuda ------------');
 
-hiddenAllButton();	//	oculta todos los botones
+	hiddenAllButton();	//	oculta todos los botones
+	delLangButt();				//	esconde botones de idiomas
 
-//	gStage
-gBoardLayer.destroy();
-gBackgroundLayer.destroy();
-gMessageLayer.destroy();
-gInitLayer.destroy();
-//	gHelpLayer.destroy();
-gAboutLayer.destroy();
 
-HelpLayer();
+	//	gStage
+	gBoardLayer.destroy();
+	gBackgroundLayer.destroy();
+	gMessageLayer.destroy();
+	gInitLayer.destroy();
+	//	gHelpLayer.destroy();
+	gAboutLayer.destroy();
 
-menuBtn.style.visibility='visible';			//	menu ppal
+	HelpLayer();
+
+	menuBtn.style.visibility='visible';			//	menu ppal
 
 }
 

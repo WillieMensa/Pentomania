@@ -38,7 +38,7 @@ manejo con @media screen
 		border-radius: 8px;
 		font-size: 1.4em;
 		line-height: 14px;
-		width: 120px;
+		width: 140px;
 		height: 36px;
 		margin-top: 8px;
 	}
@@ -53,7 +53,7 @@ manejo con @media screen
 		border-radius: 6px;
 		font-size: 1.0em;
 		line-height: 10px;
-		width: 84px;
+		width: 98px;
 		height: 25px;
 		margin-top: 6px;
 	}
@@ -68,7 +68,7 @@ manejo con @media screen
 		border-radius: 4px;
 		font-size: 0.7em;
 		line-height: 7px;
-		width: 60px;
+		width: 70px;
 		height: 18px;
 		margin-top: 4px;
 	}
@@ -83,7 +83,7 @@ manejo con @media screen
 		border-radius: 3px;
 		font-size: 0.56em;
 		line-height: 6px;
-		width: 48px;
+		width: 56px;
 		height: 14px;
 		margin-top: 3px;
 	}
@@ -97,7 +97,7 @@ manejo con @media screen
 		border-radius: 3px;
 		font-size: 0.56em;
 		line-height: 6px;
-		width: 48px;
+		width: 56px;
 		height: 14px;
 		margin-top: 3px;
 	}
@@ -219,4 +219,11 @@ button, input {
 button:hover {
   background: #ad1;
 }
+
+/*
+	.langButt {
+		border-radius: 1px;
+		border: 2;
+	}
+*/
 

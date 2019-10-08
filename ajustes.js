@@ -10,11 +10,11 @@ function HaceConfigLayer(){
 	//	if (DEBUG){console.log(' en HaceConfigLayer() ');}
 
 	var simpleText = new Kinetic.Text({
-		x: (gStage.getWidth() * 0.3),
+		x: (gStage.getWidth() * 0.5),
 		y: (gStage.getHeight() * 0.2),
-		text: '  AJUSTES DE \nPENTOMANIA',
-		fontSize: 1.5 * BLOCK_CELL_SIZE,			//	130,
-		fontFamily: FONT_NIVEL1,	//	'Calibri',
+		text: dict.txtAjustesPento,					//	'  AJUSTES DE \nPENTOMANIA',
+		fontSize: 1.5 * BLOCK_CELL_SIZE,	//	130,
+		fontFamily: FONT_NIVEL1,					//	'Calibri',
 		fill: TITLE_COLOR,
 		shadowColor: 'black',
 		shadowBlur: 5,
@@ -25,14 +25,14 @@ function HaceConfigLayer(){
 
 	// to align text in the middle of the screen, we can set the
 	// shape offset to the center of the text shape after instantiating it
-	//	simpleText.setOffset({
-	//		x: simpleText.getWidth() / 2
-	//	});
+	simpleText.setOffset({
+		x: simpleText.getWidth() / 2
+	});
 
 	var labelBtn = new Kinetic.Text({
 		x: 7 * BLOCK_CELL_SIZE,
 		y: 7.1 * BLOCK_CELL_SIZE,
-		text: 'Problema numero (1-103):',
+		text: dict.txtProblema + ' (1-103):',
 		fontSize: 0.4 * BLOCK_CELL_SIZE,
 		fontFamily: FONT_NIVEL3,//'Calibri',
 		fill: 'white',
@@ -57,8 +57,16 @@ function haceAjustes() {
 //	console.clear();
 console.log('--------- haciendo Ajustes ------------');
 
+//	hiddenAllButton();	//	oculta todos los botones
+	giraPieza.style.visibility='hidden';
+	volteaPieza.style.visibility='hidden';
+	helpBtn.style.visibility='hidden';
+	hintBtn.style.visibility='hidden';
+	aboutBtn.style.visibility='hidden';
+	playBtn.style.visibility='hidden';
+	checkBtn.style.visibility='hidden';
 
-hiddenAllButton();	//	oculta todos los botones
+	delLangButt();				//	esconde botones de idiomas
 
 //	gStage
 gBoardLayer.destroy();
@@ -67,7 +75,7 @@ gMessageLayer.destroy();
 gInitLayer.destroy();
 gHelpLayer.destroy();
 gAboutLayer.destroy();
-//	gStatusLayer.destroy();
+gConfigLayer.destroy();
 
 if (DEBUG){console.log(' haciendo ConfigLayer ')}
 

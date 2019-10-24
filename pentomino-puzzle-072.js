@@ -1,7 +1,7 @@
 ﻿/*	=============================================================================
 	Pentomino Puzzle
 
-	#### version     = "0.7.0 / 0.7.1"	- 4/10/2019
+	#### version     = "0.7.0 / 0.7.2"	- 4/10/2019
 	Multilanguage y correcciones
 
 
@@ -88,7 +88,7 @@
 //=========
 // define
 //=========
-const versionString="0.7.1"			//	lleva el numero de version actual
+const versionString="0.7.3"			//	lleva el numero de version actual
 
 //-------------------------------------
 //	https://www.w3schools.com/colors/colors_picker.asp
@@ -240,6 +240,9 @@ var
 // BEGIN
 //==================
 window.onload = function(){
+	
+	//	if (DEBUG) { alert('Iniciando funcion init()') };
+
 	init();
 };
 
@@ -289,8 +292,13 @@ function init()
 
 	createStageLayer();
 
+	//	if (DEBUG) { alert('Antes de initLanguage()') };
+	if (DEBUG) { writeMessage('Antes de initLanguage()'); };
+	
 
 	initLanguage();					//	prepara el diccionario para textos
+
+	if (DEBUG) { writeMessage('Antes de HaceBotones()') };
 
 	//	prepara los botones de la aplicacion
 	HaceBotones()
@@ -306,12 +314,16 @@ function init()
 
 	checkBtn.checked = false;		//	inicializo en false
 
+	if (DEBUG) { writeMessage('Antes de DibujaGrilla()') };
 	if (DEBUG) { DibujaGrilla()	}
 
 	//debug
 	if (DEBUG2) {
 		console.log("cell " +BLOCK_CELL_SIZE + " X,Y " + STAGE_X + "," + STAGE_Y + " offX: " + STAGE_OFFSET_X + " offY: " + STAGE_OFFSET_Y);
 	}
+
+	if (DEBUG) { writeMessage('Ingresando a MenuInicial()') };
+
 	MenuInicial();
 
 }
@@ -3321,20 +3333,6 @@ function HaceInitLayer()  {//pantalla de inicio
 
 	// add the shapes to the layer
 	gInitLayer.add(simpleText);
-
-	var versionText = new Kinetic.Text({
-		x: gStage.getWidth() / 2,
-		y: (gStage.getHeight() * 0.7),
-		text: 'vers. ' + versionString,
-		fill: TITLE_COLOR,					//	BACKGROUND_COLOR,
-		fontSize: 0.5 * BLOCK_CELL_SIZE,
-		fontStyle:"bold"
-	});
-	versionText.setOffset({
-		x: versionText.getWidth() / 2
-	});
-	gInitLayer.add(versionText);
-
 
 	languageButtons();
 	//	initLanguage();		//		selectIdioma();
